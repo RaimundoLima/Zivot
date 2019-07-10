@@ -1,0 +1,20 @@
+<!doctype html>
+<head>
+	<title>Flaskr</title>
+	 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/style.css') }}">
+	<!--
+	SEO
+	DESCRIÇÃO
+	DESENVOLVEDORES
+	SOCIAL META TAG
+	DEFINIR ROBOS
+	 -->
+</head>
+<div class=page>
+  	<div>
+  		{% block body %}{% endblock %}
+	</div>
+</div>
+<script type="text/javascript" src="{{ url_for('static',filename='js/script.js') }}" ></script>
