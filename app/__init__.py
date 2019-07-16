@@ -5,9 +5,11 @@ app.config.from_pyfile("configs.cfg")
 
 from app.blueprints.index import index
 from app.blueprints.errors import errors
+from app.blueprints.teste import teste
 
 app.register_blueprint(index)
 app.register_blueprint(errors)
+app.register_blueprint(teste)
 
 from app.models.base import db
 db.init_app(app)
