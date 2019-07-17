@@ -17,7 +17,7 @@ class Base(db.Model):
         return  self.query.filter_by(id=self.id).first()
 
     def deletar(self):
-        db.ssession.deletar(self)
+        db.session.deletar(self)
         db.session.commit()
         return True
 
