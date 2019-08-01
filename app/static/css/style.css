@@ -1,4 +1,103 @@
 body{
-	background: black;
+	background-color: rgb(173, 173, 173) !important;
 	color:green;
+}
+
+:root{
+	--zivot-blue: rgb(28, 133, 196);
+	--second-blue: rgb(23, 164, 252);
+	--med-green: rgb(0, 255, 204);
+}
+
+.navbar-logo{
+	margin-top: 2px;
+	padding: .5rem 1rem;
+	margin: .5rem 1rem;
+	width: 12.5%;
+}
+
+.navbar{
+	background-color: rgba(255, 255, 255, 0.7);
+	border-bottom: 2px white solid;
+	padding: 0 !important;
+}
+
+.navbar-itens{
+	display: inline !important;
+}
+
+.navbar-nav .nav-link{
+	padding: .5rem 1rem !important;
+}
+
+.nav-link{
+	color: white;
+	font-style: bold;
+	margin-top: 2px;
+	margin-bottom: 2px;
+	box-sizing: border-box;
+	height: 100%;
+}
+
+.nav-link:hover{
+	color: var(--zivot-blue);
+	margin-bottom: 0;
+	border-bottom: 2px var(--zivot-blue) solid;
+}
+
+.trabalhe-conosco{
+	color: var(--second-blue);
+	margin: 0px 0px 4px 0px;
+	box-sizing: border-box;
+	height: 100%;
+	border-radius: 20px;
+	padding: .5rem 1rem !important;
+	border: 2px var(--second-blue) solid !important;
+
+}
+
+.trabalhe-conosco:hover{
+	color: white;
+	border: 2px white solid !important;
+	text-decoration: none !important;
+}
+
+.menu-entrar{
+	border-top: 0px white !important;
+	border-left: 2px lightgray solid !important;
+	border-right: 2px lightgray solid !important;
+	border-bottom: 2px lightgray solid !important;
+	padding: 0 !important;
+	border-radius: 0% !important;
+}
+
+.menu-entrar .dropdown-item{
+	margin-bottom: 2px;
+}
+
+.menu-entrar .dropdown-item:hover{
+	background-color: white !important;
+	margin-bottom: 0px;
+	border-bottom: 2px var(--zivot-blue) solid;
+}
+
+.box1{
+	height: 100px;
+	width: 100px;
+	background-color: var(--zivot-blue);
+	border: 1px black solid;
+}
+
+.box2{
+	height: 100px;
+	width: 100px;
+	background-color: lightgray;
+	border: 1px black solid;
+}
+
+.box3{
+	height: 100px;
+	width: 100px;
+	background-color: var(--med-green);
+	border: 1px black solid;
 }
