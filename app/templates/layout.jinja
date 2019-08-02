@@ -1,8 +1,8 @@
 <!doctype html>
 <head>
-	<title>Flaskr</title>
-	 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	{% block title %}{% endblock %}
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/style.css') }}">
 	<!--
 	SEO
@@ -11,11 +11,40 @@
 	SOCIAL META TAG
 	DEFINIR ROBOS
 	 -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<link src="../static/css/style.css" />
+
 </head>
-<div class=page>
-  	<div>
-  		{% block body %}{% endblock %}
-	</div>
-</div>
-<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-<script type="text/javascript" src="{{ url_for('static',filename='js/script.js') }}" ></script>
+<body>
+	<nav class="navbar navbar-light">
+		<img class="navbar-logo" src="../static/images/zivot_logo.png" alt="">
+		<div class="btn-group">
+  			<a class="trabalhe-conosco" href="#">Trabalhe Conosco</a>
+			<div class="drop-link dropdown show">
+				<a class="nav-link " href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					Entrar/Cadastrar
+				</a>
+				<div class="dropdown-menu menu-entrar" aria-labelledby="dropdownMenuLink">
+					<a class="dropdown-item" href="#">Entrar</a>
+					<a class="dropdown-item" href="#">Cadastrar</a>
+				</div>
+			</div>
+		</div>	
+	</nav>
+
+
+	<!--
+	<div class="box1"></div>
+	<div class="box3"></div>
+	<div class="box2"></div>
+	<div class="box4"></div>
+	-->
+	{% block body %}{% endblock %}
+
+</body>
+<footer>
+	<script type="text/javascript" src="{{ url_for('static',filename='js/script.js') }}" ></script>
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</footer>
