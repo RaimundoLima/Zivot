@@ -1,16 +1,14 @@
-from flask_sqlalchemy import SQLAlchemy
-db=SQLAlchemy()
+from app import db
 
 class Base(db.Model):
     __abstract__=True
 
-    id=db.Column(db.Integer,primary_key=True)
-    date_created=db.Column(db.DateTime,default=db.func.current_timestamp())
-    date_modified=db.Column(db.DateTime,default=db.func.current_timestamp(),onupdate=db.func.current_timestamp())
+    id=db.Column(db.Integer(),primary_key=True)
+    date_criacao=db.Column(db.DateTime(),default=db.func.current_timestamp())
 
     def inserir(self):
         db.session.add(self)
-        db.session.commit(self)
+        db.session.commit()
         return True
 
     def buscar(self):

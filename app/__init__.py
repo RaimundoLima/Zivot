@@ -3,16 +3,16 @@ from flask import Flask
 app = Flask(__name__)
 app.config.from_pyfile("configs.cfg")
 
-from app.blueprints.index import index
-from app.blueprints.errors import errors
-from app.blueprints.teste import teste
+from app.blueprints import index, errors, teste
 
 app.register_blueprint(index)
 app.register_blueprint(errors)
 app.register_blueprint(teste)
 
-from app.models.base import db
+from flask_sqlalchemy import SQLAlchemy
+db=SQLAlchemy()
 db.init_app(app)
+from app.models import Usuario
 
 from app.utils.flask_mail import mail
 mail.init_app(app)

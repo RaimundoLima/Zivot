@@ -1,0 +1,195 @@
+/recuperacao-de-senha{
+    template:recueprarDeSenha.jinja
+}
+/pedido-de-recuparacao-de-senha{
+    //confere se o meial é existente 
+    dados:{
+        erro
+    }
+}
+/entrar{
+    template:entrar.jinja
+    dados:{
+        form
+    }
+}
+/inicio{
+    template:inicio.jinja
+    dados:{
+        coCriadores[3]{
+            id,
+            nome,
+            descricao,
+            foto
+        }
+    }
+}
+/cadastro{
+    template:cadastro.jinja
+}
+/cadastro-paciente{
+    template:cadastroPaciente.jinja
+    dados:{
+        form
+    }
+}
+/cadastro-profissional-de-saude{
+    template:cadastroProfissionalDeSaude.jinja
+    dados:{
+        form
+    }
+}
+/cadastro/cliente/concluido{
+    template:cadastroClienteConcluido.jinja
+}
+/cadastro/profissional-de-saude/concluido{
+    template:cadastroProfissionalDeSaudeConcluido.jinja
+}
+/saldo-em-conta{
+    template:saldoEmConta.jinja
+}
+/solicitar-deposito/{idpaciente}{
+    template:solicitarDeposito.jinja
+}
+/painel-paciente{
+    template:painelPaciente.jinja
+    dados:{
+        consultasAgendadas[todas]{
+            id,
+            nomeProfissional,
+            status,
+            dateTime
+        }
+    }
+}
+/visualizar-notificacoes{
+    //visualiza todas as notificações do usuario logado
+}
+/atualizar-notificacoes{
+    dados:{
+        notificacoes[10]{
+            id,
+            texto,
+            dateTime        
+        }
+    }
+}
+/sair{
+    //desloga
+}
+/busca-profissional/{especialidade}/{estado}/{cidade}{
+    dados:{
+        profissionais[5]{
+            id,
+            nome,
+            foto,
+            especialidade,
+            proximoHorarioVago
+        }
+    }
+}
+/notificacoes{
+    template:notificacoes.jinja
+    dados:{
+        notificacoes[todas]{
+            id,
+            texto,
+            dateTime        
+        }
+    }
+}
+/minhas-consultas{
+    template:minhasConsultas.jinja
+    dados:{
+        consultas[todas]{
+            id,
+            nomeProfissional,
+            online,
+            dateTime,
+            status
+        }
+    }
+}
+/remarcar-consulta/{idconsulta}{
+    template:remarcarConsullta.jinja
+    dados:{
+        consulta{
+            id,
+            nomeProfissional,
+            online,
+            dateTime
+        }
+    }
+}
+/cancelar-consulta/{idconsulta}{
+    //cancela consulta
+}
+/avaliar-consulta/{idconsulta}{
+    //avaliação da consulta
+}
+/editar-perfil{
+    template:editarPerfil.jinja
+    dados:{
+        usuario{
+            celular,
+            estado,
+            cidade,
+            receberNotificacoes
+        }
+        form
+    }
+}
+/troque-sua-senha{
+    //troca a senha e envia por email
+    dados:{
+        form
+    }
+}
+/profissional-de-saude/{idprofissional}{
+    template:profissional-de-saude.jinja
+    dados:{
+        profissional{
+            id,
+            nome,
+            especialidade,
+            cidade,
+            estado,
+            email,
+            celular,
+            valor
+        }
+    }
+}
+/profissional-de-saude/{idprofissional}/calendario/{ano}/{mes}{
+    dados:{
+        datas[31]{
+            disponivel
+        }
+    }
+}
+/profissional-de-saude/{idprofissional}/buscar-consultas/{data}{
+    dados:{
+        datas{
+            datas[todas]{
+                online,
+                hoarioInicio,
+                horariofim
+            }
+        }
+    }
+}
+/profissional-de-saude/{idprofissional}/gerar-consulta/{dateTime}{
+    template:profissionalDesSaudeGerarConsulta.jinja
+    dados:{
+        consulta{
+            nomeProfissional,
+            especialidade,
+            dateTime,
+            valor
+        }
+    }
+    *******pagseguro
+}
+/solicitar-remarcar-consulta/{idconsulta}/{dateTime}{
+    //
+}

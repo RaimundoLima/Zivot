@@ -1,4 +1,4 @@
-from flask import render_template,Blueprint
+from flask import render_template,Blueprint,redirect
 
 
 teste = Blueprint('teste', __name__,template_folder='templates')
