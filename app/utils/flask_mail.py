@@ -8,8 +8,11 @@ def bem_vindo(recipis):
    mail.send(msg)
    return True
 
-def redefinir_senha(recipis):
-   pass
+def redefinir_senha(recipis,codigo):
+   msg = Message('trocou senha', recipients = recipis)
+   msg.html = "<b>Acesse esse link</b> http://127.0.0.1:5000/codigo/"+str(codigo)
+   mail.send(msg)
+   return True
 
 def cadastro_aprovado(recipis):
    pass

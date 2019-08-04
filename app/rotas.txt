@@ -1,19 +1,20 @@
-/recuperacao-de-senha{
-    template:recueprarDeSenha.jinja
-}
-/pedido-de-recuparacao-de-senha{
-    //confere se o meial é existente 
+/recuperacao-de-senha/{email}{
+    blueprint:nologin
+    template:recuperacaoDeSenha.jinja
+    //confere se o email é existente 
     dados:{
         erro
     }
 }
 /entrar{
+    blueprint:nologin
     template:entrar.jinja
     dados:{
         form
     }
 }
 /inicio{
+    blueprint:nologin
     template:inicio.jinja
     dados:{
         coCriadores[3]{
@@ -25,33 +26,33 @@
     }
 }
 /cadastro{
+    blueprint:nologin
     template:cadastro.jinja
 }
-/cadastro-paciente{
+/cadastro/paciente{dados do paciente}{
+    blueprint:nologin
     template:cadastroPaciente.jinja
     dados:{
         form
     }
 }
-/cadastro-profissional-de-saude{
+/cadastro-profissional-de-saude{dados do profissional}{
+    blueprint:nologin
     template:cadastroProfissionalDeSaude.jinja
     dados:{
         form
     }
 }
-/cadastro/cliente/concluido{
-    template:cadastroClienteConcluido.jinja
-}
-/cadastro/profissional-de-saude/concluido{
-    template:cadastroProfissionalDeSaudeConcluido.jinja
-}
 /saldo-em-conta{
+    blueprint:paciente
     template:saldoEmConta.jinja
 }
 /solicitar-deposito/{idpaciente}{
+    blueprint:paciente
     template:solicitarDeposito.jinja
 }
 /painel-paciente{
+    blueprint:paciente
     template:painelPaciente.jinja
     dados:{
         consultasAgendadas[todas]{
@@ -63,9 +64,11 @@
     }
 }
 /visualizar-notificacoes{
+    blueprint:notificacao
     //visualiza todas as notificações do usuario logado
 }
 /atualizar-notificacoes{
+    blueprint:notificacao
     dados:{
         notificacoes[10]{
             id,
@@ -75,6 +78,7 @@
     }
 }
 /sair{
+    blueprint:nologin
     //desloga
 }
 /busca-profissional/{especialidade}/{estado}/{cidade}{
@@ -89,6 +93,7 @@
     }
 }
 /notificacoes{
+    blueprint:notificacao
     template:notificacoes.jinja
     dados:{
         notificacoes[todas]{
@@ -99,6 +104,7 @@
     }
 }
 /minhas-consultas{
+    blueprint:paciente
     template:minhasConsultas.jinja
     dados:{
         consultas[todas]{
@@ -111,6 +117,7 @@
     }
 }
 /remarcar-consulta/{idconsulta}{
+    blueprint:paciente
     template:remarcarConsullta.jinja
     dados:{
         consulta{
@@ -122,12 +129,15 @@
     }
 }
 /cancelar-consulta/{idconsulta}{
+    blueprint:paciente
     //cancela consulta
 }
 /avaliar-consulta/{idconsulta}{
+    blueprint:paciente
     //avaliação da consulta
 }
-/editar-perfil{
+/editar-perfil-paciente{
+    blueprint:paciente
     template:editarPerfil.jinja
     dados:{
         usuario{
@@ -139,13 +149,15 @@
         form
     }
 }
-/troque-sua-senha{
+/troque-sua-senha-usuario{senha}{novaSenha}{
+    blueprint:paciente
     //troca a senha e envia por email
     dados:{
         form
     }
 }
 /profissional-de-saude/{idprofissional}{
+    blueprint:nologin
     template:profissional-de-saude.jinja
     dados:{
         profissional{
@@ -161,6 +173,7 @@
     }
 }
 /profissional-de-saude/{idprofissional}/calendario/{ano}/{mes}{
+    blueprint:nologin
     dados:{
         datas[31]{
             disponivel
@@ -168,6 +181,7 @@
     }
 }
 /profissional-de-saude/{idprofissional}/buscar-consultas/{data}{
+    blueprint:nologin
     dados:{
         datas{
             datas[todas]{
@@ -179,6 +193,7 @@
     }
 }
 /profissional-de-saude/{idprofissional}/gerar-consulta/{dateTime}{
+    blueprint:paciente
     template:profissionalDesSaudeGerarConsulta.jinja
     dados:{
         consulta{
@@ -190,6 +205,10 @@
     }
     *******pagseguro
 }
-/solicitar-remarcar-consulta/{idconsulta}/{dateTime}{
+/codigo-de-nova-senha/{codigo}:
+    blueprint:nologin
+    //não existe no figma
+/solicitar-remarcar-consulta-paciente/{idconsulta}/{dateTime}{
+    blueprint:paciente
     //
 }

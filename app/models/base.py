@@ -1,4 +1,5 @@
 from app import db
+import json
 
 class Base(db.Model):
     __abstract__=True
@@ -21,3 +22,16 @@ class Base(db.Model):
 
     def listar(self):
         return self.query.all()
+
+    def buscaGenerica(self,kBusca):
+        return self.query.filter_by(**kBusca).first()
+
+    def buscaGenericaLista(self,kBusca):
+        return self.query.filter_by(**kBusca)
+
+    def as_dict(self):
+        return {c.name: getattr(self, c.name) for c in self.__table__.columns}
+
+    def toJson(self):
+        return json.dumps(list(map(lambda x:x.as_dict(),self)),default=str)
+    

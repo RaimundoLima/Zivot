@@ -16,3 +16,18 @@ class form_usuario(FlaskForm):
         validators.Length(min=3,max=50,message="O nome deve ter entre 3 e 50 caracteres"),
         validators.Email(message="Email invalido")])
     submit = SubmitField('Cadastrar')
+
+class formEmail(FlaskForm):
+    email=StringField("Email",[
+    validators.InputRequired(message="Campo obrigatorio"),
+    validators.Length(min=3,max=50,message="O nome deve ter entre 3 e 50 caracteres"),
+    validators.Email(message="Email invalido")])
+
+class formLogin(FlaskForm):
+    email=StringField("Email",[
+        validators.InputRequired(message="Campo obrigatorio"),
+        validators.Length(min=3,max=50,message="O nome deve ter entre 3 e 50 caracteres"),
+        validators.Email(message="Email invalido")])
+    senha=PasswordField("Senha",[
+        validators.InputRequired(message="Campo obrigatorio"),
+        validators.Length(min=3,max=50,message="O nome deve ter entre 3 e 50 caracteres")])
