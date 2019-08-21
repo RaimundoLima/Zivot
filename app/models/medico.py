@@ -28,3 +28,4 @@ class Medico(Base):
     #agenda=relationship('agenda',backref='medico',lazy=True)
     #medico_notificacoes=relationship('medico_notificacoes',backref='medico',lazy=True)
     #consulta=relationship('consulta',backref='medico',lazy=True)
+    #coCriador=relationship('CoCriador',backref='medico',lazy=True)

@@ -4,4 +4,4 @@ from sqlalchemy.orm import relationship
 
 class CoCriador(Base):
     id_medico=Column(ForeignKey('medico.id'))
-    medico=relationship('medico',backref='coCriador',lazy=True)
+    #medico=relationship('medico',backref='coCriador',lazy=True)

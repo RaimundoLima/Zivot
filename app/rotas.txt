@@ -42,12 +42,13 @@
     dados:{
         form
     }
+
 }
 /saldo-em-conta{
     blueprint:paciente
     template:saldoEmConta.jinja
 }
-/solicitar-deposito/{idpaciente}{
+/solicitar-deposito/{
     blueprint:paciente
     template:solicitarDeposito.jinja
 }
@@ -124,7 +125,8 @@
             id,
             nomeProfissional,
             online,
-            dateTime
+            dateInicio,
+            dateFim
         }
     }
 }
@@ -156,6 +158,7 @@
         form
     }
 }
+
 /profissional-de-saude/{idprofissional}{
     blueprint:nologin
     template:profissional-de-saude.jinja
@@ -193,7 +196,7 @@
     }
 }
 /profissional-de-saude/{idprofissional}/gerar-consulta/{dateTime}{
-    blueprint:paciente
+    blueprint:pagseguro
     template:profissionalDesSaudeGerarConsulta.jinja
     dados:{
         consulta{
@@ -212,3 +215,50 @@
     blueprint:paciente
     //
 }
+
+/painel-profissional{
+    blueprint:profissional
+    template:painel-profissional.jinja
+    dados:{
+        consultas{
+            id,
+            nome,
+            horarioInicio,
+            status
+        }
+        profissional{
+            nome,
+            especialidade,
+            cidade,
+            estado,
+            enderecoConsultorio,
+            email,
+            telefone,
+            valor
+        }
+    }
+}
+/horarios{
+    blueprint:profissional
+    template:horarios.jinja
+}
+
+/buscar-horarios-dia-da-semana/{dia-da-semana}{
+    blueprint:profissional
+    template:buscar-horarios-dia-da-semana
+    data:{
+        horariosDiaDaSemana[all]{
+            id,
+            horarioInicio,
+            horarioFim
+        }
+
+    }
+}
+/adicionar-horario/{dia-da-semana}/{horario-inicial}/{horario-final}{
+    blueprint:profissional
+}
+/excluir-horario/{idhorario}{
+    blueprint:profissional
+}
+

@@ -20,4 +20,4 @@ class Usuario(Base):
     receber_noticias=Column(Boolean(), nullable=False)
     codigo_troca_senha=Column(VARCHAR(32))
     expiracao=Column(Date())
-    saldo=Column(Float(),nullable=False)
+    saldo=Column(Float())

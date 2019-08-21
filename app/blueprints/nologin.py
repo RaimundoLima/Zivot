@@ -1,5 +1,5 @@
 from flask import render_template,Blueprint,redirect,request,session,url_for
-from app.models import Usuario,Medico,Adm,CoCriador
+from app.models import Usuario,Medico,Adm,CoCriador,Especialidade,Consulta
 from app.utils.flask_mail import redefinir_senha
 from app.utils.flask_wtf import formEmail,formLogin
 
@@ -8,7 +8,6 @@ import hashlib
 
 nologin = Blueprint('index', __name__,
                         template_folder='templates')
-
 
 @nologin.route("/")
 def index():
@@ -19,12 +18,11 @@ def inicio():
     if 'tipo' in session:
         if session['tipo']=='paciente':
             redirect('/painel-paciente')
-        elif session['tipo']=='medico':
+        elif session['tipo']=='profissional':
             redirect('/painel-profissional')
         elif session ['tipo']=='adm':
             redirect('/adm')
-    coCriadores=CoCriador()
-    arr=coCriadores.listar()
+    coCriadores=CoCriador().listar()
     medicos=[]
     for medico in coCriadores:
         id=medico.medico.id
@@ -75,16 +73,16 @@ def atualizaSenha(codigo):
         pass
     if user.expiracao+3600>datetime.timestamp(datetime.now()):
         session['tipo']=tipo
-        session['id']=user.id
+        session['user']=user.toJson()
     else:
         #codigo expirado
         pass
-    if tipo=='usuario':  
+    if tipo=='paciente':  
         redirect('/troque-sua-senha-usuario')
     elif tipo=='profissional':  
         redirect('/troque-sua-senha-profisional')
     
-@nologin.route('/entrar')
+@nologin.route('/entrar',methods = ['GET', 'POST'])
 def entrar():
     form=formLogin()
     if request.method == 'POST':
@@ -98,20 +96,29 @@ def entrar():
                 tipo='paciente'
             elif medico !=None:
                 user=medico
-                tipo='medico'
+                tipo='profissional'
             elif adm!=None:
                 user=adm
                 tipo='adm'
-            session['id']=user.id
+            session['user']=user.toJson()
             session['tipo']=tipo
             
         redirect('/inicio')
 
     return render_template('entrar.jinja',form=form)
 
-@nologin.routes('/cadastro')
+@nologin.route('/cadastro')
 def cadastro():
     return render_template('cadastro.jinja')
+
+@nologin.route('/cadastro/paciente',methods = ['GET', 'POST'])
+def cadastro_paciente():
+    form=form_usuario()
+    if request.method == 'POST':
+        if form.validate:
+            redirect('/teste')
+        redirect('/teste')
+    return render_template('cadastroPaciente.jinja',form)
 '''
 
 /cadastro/paciente{dados do paciente}{
@@ -126,6 +133,55 @@ def cadastro():
     template:cadastroProfissionalDeSaude.jinja
     dados:{
         form
+    }
+}
+'''
+@nologin.route('/sair')
+def sair():
+    session.clear()
+    return redirect('/inicio')
+
+@nologin.route('/profissional-de-saude/<int:id>')
+def profissionalDeSaude(id):
+    profissional=Medico.buscarId(id)
+    data={
+        'id':profissional.id,
+        'nome':profissional.nome,
+        'especialidade':profissional.especialidade,
+        'cidade':profissional.cidade,
+        'estado':profissional.estado,
+        'email':profissional.email,
+        'celular':profissional.celular,
+        'valor':profissional.valor
+    }
+    return render_template('profissional-de-saude.jinja',data=data)
+
+'''
+/profissional-de-saude/{idprofissional}/calendario/{data}
+    blueprint:nologin
+    dados:{
+        datas[31]{
+            disponivel
+        }
+    }
+}
+'''
+@nologin.route('/profissional-de-saude/<id>/buscar-consultas/{<string:data>')
+def buscarConsultas(id,data):
+    consulta=Consulta()
+    consulta.query.filter(id_medico=id).filter(hora_inicio<data)
+    pass
+'''
+/profissional-de-saude/{idprofissional}/buscar-consultas/{data}{
+    blueprint:nologin
+    dados:{
+        datas{
+            datas[todas]{
+                online,
+                hoarioInicio,
+                horariofim
+            }
+        }
     }
 }
 '''

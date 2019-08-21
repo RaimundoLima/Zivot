@@ -15,6 +15,9 @@ class Base(db.Model):
     def buscar(self):
         return  self.query.filter_by(id=self.id).first()
 
+    def buscarId(self,id):
+        return  self.query.filter_by(id=id).first()
+
     def deletar(self):
         db.session.deletar(self)
         db.session.commit()
@@ -33,5 +36,5 @@ class Base(db.Model):
         return {c.name: getattr(self, c.name) for c in self.__table__.columns}
 
     def toJson(self):
-        return json.dumps(list(map(lambda x:x.as_dict(),self)),default=str)
+        return json.dumps(self.as_dict(),default=str)
     

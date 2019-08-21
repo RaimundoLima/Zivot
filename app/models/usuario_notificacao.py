@@ -3,5 +3,5 @@ from sqlalchemy import Boolean,Date,DateTime,Time,ForeignKey,Column, Integer, Nu
 from sqlalchemy.orm import relationship
 
 class Usuario_Notificacoes(Base):
-    id_usuario=Column(ForeignKey('medico.id'),nullable=False)
+    id_usuario=Column(ForeignKey('usuario.id'),nullable=False)
     id_notificacao=Column(ForeignKey('notificacoes.id'),nullable=False)
