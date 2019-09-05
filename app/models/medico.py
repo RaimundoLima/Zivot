@@ -1,0 +1,31 @@
+from .base import Base
+from sqlalchemy import Boolean,Date,DateTime,Time,ForeignKey,Column, Integer, Numeric, Binary, String,VARCHAR,Float
+from sqlalchemy.orm import relationship
+
+class Medico(Base):
+    id_especialidade=Column(ForeignKey('especialidade.id'))
+    nome = Column(VARCHAR(50), nullable=False)
+    senha = Column(VARCHAR(32), nullable=False)
+    email = Column(VARCHAR(50),unique=True, nullable=False)
+    foto=Column(VARCHAR(50), nullable=False)
+    celular =Column(VARCHAR(12),unique=True,nullable=False)
+    sexo= Column(VARCHAR(11), nullable=False)
+    nascimento=Column(Date(), nullable=False)
+    cpf=Column(VARCHAR(11), nullable=False)
+    cfm_cfp=Column(VARCHAR(25), nullable=False)
+    estado=Column(VARCHAR(2), nullable=False)
+    cidade=Column(VARCHAR(50), nullable=False)
+    bairro=Column(VARCHAR(100), nullable=False)
+    rua=Column(VARCHAR(100), nullable=False)
+    numero=Column(VARCHAR(20), nullable=False)
+    atendimento_online=Column(Boolean(), nullable=False)
+    receber_noticias=Column(Boolean(), nullable=False)
+    valor=Column(Float(), nullable=False)
+    verificado=Column(Boolean(), nullable=False)
+    codigo_troca_senha=Column(VARCHAR(32))
+    expiracao=Column(Date())
+    saldo=Column(Float(),nullable=False)
+    #agenda=relationship('agenda',backref='medico',lazy=True)
+    #medico_notificacoes=relationship('medico_notificacoes',backref='medico',lazy=True)
+    #consulta=relationship('consulta',backref='medico',lazy=True)
+    #coCriador=relationship('CoCriador',backref='medico',lazy=True)

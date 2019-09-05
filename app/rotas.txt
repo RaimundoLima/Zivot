@@ -1,0 +1,264 @@
+/recuperacao-de-senha/{email}{
+    blueprint:nologin
+    template:recuperacaoDeSenha.jinja
+    //confere se o email é existente 
+    dados:{
+        erro
+    }
+}
+/entrar{
+    blueprint:nologin
+    template:entrar.jinja
+    dados:{
+        form
+    }
+}
+/inicio{
+    blueprint:nologin
+    template:inicio.jinja
+    dados:{
+        coCriadores[3]{
+            id,
+            nome,
+            descricao,
+            foto
+        }
+    }
+}
+/cadastro{
+    blueprint:nologin
+    template:cadastro.jinja
+}
+/cadastro/paciente{dados do paciente}{
+    blueprint:nologin
+    template:cadastroPaciente.jinja
+    dados:{
+        form
+    }
+}
+/cadastro-profissional-de-saude{dados do profissional}{
+    blueprint:nologin
+    template:cadastroProfissionalDeSaude.jinja
+    dados:{
+        form
+    }
+
+}
+/saldo-em-conta{
+    blueprint:paciente
+    template:saldoEmConta.jinja
+}
+/solicitar-deposito/{
+    blueprint:paciente
+    template:solicitarDeposito.jinja
+}
+/painel-paciente{
+    blueprint:paciente
+    template:painelPaciente.jinja
+    dados:{
+        consultasAgendadas[todas]{
+            id,
+            nomeProfissional,
+            status,
+            dateTime
+        }
+    }
+}
+/visualizar-notificacoes{
+    blueprint:notificacao
+    //visualiza todas as notificações do usuario logado
+}
+/atualizar-notificacoes{
+    blueprint:notificacao
+    dados:{
+        notificacoes[10]{
+            id,
+            texto,
+            dateTime        
+        }
+    }
+}
+/sair{
+    blueprint:nologin
+    //desloga
+}
+/busca-profissional/{especialidade}/{estado}/{cidade}{
+    dados:{
+        profissionais[5]{
+            id,
+            nome,
+            foto,
+            especialidade,
+            proximoHorarioVago
+        }
+    }
+}
+/notificacoes{
+    blueprint:notificacao
+    template:notificacoes.jinja
+    dados:{
+        notificacoes[todas]{
+            id,
+            texto,
+            dateTime        
+        }
+    }
+}
+/minhas-consultas{
+    blueprint:paciente
+    template:minhasConsultas.jinja
+    dados:{
+        consultas[todas]{
+            id,
+            nomeProfissional,
+            online,
+            dateTime,
+            status
+        }
+    }
+}
+/remarcar-consulta/{idconsulta}{
+    blueprint:paciente
+    template:remarcarConsullta.jinja
+    dados:{
+        consulta{
+            id,
+            nomeProfissional,
+            online,
+            dateInicio,
+            dateFim
+        }
+    }
+}
+/cancelar-consulta/{idconsulta}{
+    blueprint:paciente
+    //cancela consulta
+}
+/avaliar-consulta/{idconsulta}{
+    blueprint:paciente
+    //avaliação da consulta
+}
+/editar-perfil-paciente{
+    blueprint:paciente
+    template:editarPerfil.jinja
+    dados:{
+        usuario{
+            celular,
+            estado,
+            cidade,
+            receberNotificacoes
+        }
+        form
+    }
+}
+/troque-sua-senha-usuario{senha}{novaSenha}{
+    blueprint:paciente
+    //troca a senha e envia por email
+    dados:{
+        form
+    }
+}
+
+/profissional-de-saude/{idprofissional}{
+    blueprint:nologin
+    template:profissional-de-saude.jinja
+    dados:{
+        profissional{
+            id,
+            nome,
+            especialidade,
+            cidade,
+            estado,
+            email,
+            celular,
+            valor
+        }
+    }
+}
+/profissional-de-saude/{idprofissional}/calendario/{ano}/{mes}{
+    blueprint:nologin
+    dados:{
+        datas[31]{
+            disponivel
+        }
+    }
+}
+/profissional-de-saude/{idprofissional}/buscar-consultas/{data}{
+    blueprint:nologin
+    dados:{
+        datas{
+            datas[todas]{
+                online,
+                hoarioInicio,
+                horariofim
+            }
+        }
+    }
+}
+/profissional-de-saude/{idprofissional}/gerar-consulta/{dateTime}{
+    blueprint:pagseguro
+    template:profissionalDesSaudeGerarConsulta.jinja
+    dados:{
+        consulta{
+            nomeProfissional,
+            especialidade,
+            dateTime,
+            valor
+        }
+    }
+    *******pagseguro
+}
+/codigo-de-nova-senha/{codigo}:
+    blueprint:nologin
+    //não existe no figma
+/solicitar-remarcar-consulta-paciente/{idconsulta}/{dateTime}{
+    blueprint:paciente
+    //
+}
+
+/painel-profissional{
+    blueprint:profissional
+    template:painel-profissional.jinja
+    dados:{
+        consultas{
+            id,
+            nome,
+            horarioInicio,
+            status
+        }
+        profissional{
+            nome,
+            especialidade,
+            cidade,
+            estado,
+            enderecoConsultorio,
+            email,
+            telefone,
+            valor
+        }
+    }
+}
+/horarios{
+    blueprint:profissional
+    template:horarios.jinja
+}
+
+/buscar-horarios-dia-da-semana/{dia-da-semana}{
+    blueprint:profissional
+    template:buscar-horarios-dia-da-semana
+    data:{
+        horariosDiaDaSemana[all]{
+            id,
+            horarioInicio,
+            horarioFim
+        }
+
+    }
+}
+/adicionar-horario/{dia-da-semana}/{horario-inicial}/{horario-final}{
+    blueprint:profissional
+}
+/excluir-horario/{idhorario}{
+    blueprint:profissional
+}
+

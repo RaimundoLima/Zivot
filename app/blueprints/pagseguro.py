@@ -1,0 +1,15 @@
+'''
+/profissional-de-saude/{idprofissional}/gerar-consulta/{dateTime}{
+    blueprint:paciente
+    template:profissionalDesSaudeGerarConsulta.jinja
+    dados:{
+        consulta{
+            nomeProfissional,
+            especialidade,
+            dateTime,
+            valor
+        }
+    }
+    *******pagseguro
+}
+'''

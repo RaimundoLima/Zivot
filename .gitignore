@@ -3,3 +3,5 @@ include/
 lib/
 .vscode/
 *.pyc
+Scripts/
+tcl/
