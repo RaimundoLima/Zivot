@@ -1,0 +1,116 @@
+{% extends "layout.jinja" %}
+{% block title %}
+    <title><!-- ESPECIALIDADE E NOME --></title>
+{% endblock %}
+
+{% block styles %}
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/swiper.css') }}">
+{% endblock %}
+
+{% block body %}
+    <div id="perfil-container" class="container-fluid">
+        <div class="row right-painel">
+            <div id="col1-pic" class="col-2">
+            </div>
+            <div id="col2-dados" class="col-5">
+                <span id="nome-user">João Pedro -------------</span>
+                <span id="especialidade-user">Cardiologista</span>
+                <span id="localizacao-user">Rio Grande/RS</span>
+            </div>
+            <div id="col2-dados" class="col-5">
+                <span id="email-user">jp.cardgiologia@gmail.com</span>
+                <span id="telefone-user">53 91829245</span>
+                <span id="valor-user">R$200,00</span>
+            </div>
+        
+            <div id="horarios-dia" class="col-6">
+                <div class="row">
+                    <div class="col-12 text-center">
+                        <span id="dia-selecionado">Nenhum dia selecionado!</span>
+                    </div>
+                    <div class="col-2"></div>
+                    <div id="consultas-disponiveis" class="col-8">
+                        <div class="consulta-disponivel">
+                            <span class="horario-consulta">12:00-13:00</span>
+                            <i class="material-icons" data-toggle="modal" data-target="#modalAgendamento">date_range</i>
+                        </div>
+                    </div>
+                    <div class="col-2"></div>
+                </div>
+            </div>
+            <div id="calendario-profissional" class="col-6">
+                <div class="row">
+                    <div class="col-4 text-right">
+                        <a id="btn-left-calendario"><i class="material-icons">chevron_left</i></a>
+                    </div>
+                    <div class="col-4 text-center">
+                        <span id="mes-calendario"></span>
+                    </div>
+                    <div class="col-4 text-left">
+                        <a id="btn-right-calendario"><i class="material-icons">chevron_right</i></a>    
+                    </div>
+                    <div class="col-2"></div>
+                    <div class="col-8 text-center">
+                        <table id="" style="width:100%">
+                            <tr>
+                                <th>D</th>
+                                <th>S</th>
+                                <th>T</th>
+                                <th>Q</th>
+                                <th>Q</th>
+                                <th>S</th>
+                                <th>S</th>
+                            </tr>
+                        </table>
+                        <table id="dias-calendario" style="width:100%">
+                        </table>
+                    </div>
+                    <div class="col-2"></div>
+                </div>
+            </div>
+            <div class="col-12 text-left">Outras opções:</div>
+            <div class="col-1 text-right">
+                <div id="btn-left-opcoes" class="swiper-button-prev"><i class="material-icons">chevron_left</i></div>
+            </div>
+            <div class="col-10 swiper-container">
+                <span id="profissionais-opcoes swiper-wrapper">
+                    
+                </span>
+            </div>
+            <div class="col-1 text-left">
+                <div id="btn-right-opcoes" class="swiper-button-next"><i class="material-icons">chevron_right</i></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Agendamento-->
+    <div class="modal fade" id="modalAgendamento" tabindex="-1" role="agendamento">
+        <div class="modal-dialog  modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Agendar Consulta</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Profissional:<span id="detalhe-profissional"></span><br>
+                    Especialidade:<span id="detalhe-especialidade"></span><br>
+                    Data:<span id="detalhe-data"></span><br>
+                    Horário:<span id="detalhe-horario"></span><br>
+                    Valor:R$<span id="detalhe-valor"></span><br>
+                    <span id="detalhe-local">Local sera enviado por email assim que a consulta for confirmada pelo profissional!</span>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary">Agendar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block scripts %}
+    <script type="text/javascript" src="{{ url_for('static',filename='js/calendario.js') }}" ></script>
+    <script type="text/javascript" src="{{ url_for('static',filename='js/perfil.js') }}" ></script>
+    <script type="text/javascript" src="{{ url_for('static',filename='js/modais.js') }}" ></script>
+    <script type="text/javascript" src="{{ url_for('static',filename='js/swiper.js') }}" ></script>
+{% endblock %}

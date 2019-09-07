@@ -4,47 +4,116 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/style.css') }}">
+	{% block styles %}{% endblock %}
 	<!--
 	SEO
 	DESCRIÇÃO
 	DESENVOLVEDORES
 	SOCIAL META TAG
 	DEFINIR ROBOS
-	 -->
+    -->
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 	<link src="../static/css/style.css" />
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 
 </head>
 <body>
-	<nav class="navbar navbar-light">
-		<img class="navbar-logo" src="../static/images/zivot_logo.png" alt="">
-		<div class="btn-group">
-  			<a class="trabalhe-conosco" href="#">Trabalhe Conosco</a>
-			<div class="drop-link dropdown show">
-				<a class="nav-link " href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-					Entrar/Cadastrar
-				</a>
-				<div class="dropdown-menu menu-entrar" aria-labelledby="dropdownMenuLink">
-					<a class="dropdown-item" href="#">Entrar</a>
-					<a class="dropdown-item" href="#">Cadastrar</a>
+	{% if "a" == "b" %}
+		<nav class="navbar navbar-light">
+			<img class="navbar-logo" src="../static/images/zivot_logo.png" alt="">
+			<div class="btn-group">
+				<a class="trabalhe-conosco" href="#">Trabalhe Conosco</a>
+				<div class="drop-link dropdown show">
+					<a class="nav-link dropdown-toggle" href="#" role="button" id="loginDropwdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						Entrar/Cadastrar
+					</a>
+					<div class="dropdown-menu menu-entrar" aria-labelledby="loginDropwdown">
+						<a class="dropdown-item" href="#">Entrar</a>
+						<a class="dropdown-item" href="#">Cadastrar</a>
+					</div>
 				</div>
-			</div>
-		</div>	
-	</nav>
+			</div>	
+		</nav>
+	{% else %}
+		<nav class="navbar navbar-light">
+			<img class="navbar-logo" src="../static/images/zivot_logo.png" alt="">
+			<div class="btn-group">
+				<span class="navbar-text">Bem vindo,
+					<span id="userName">Juca</span>
+				</span>
 
+				<div class="drop-link dropdown show">
+					<a class="nav-link" href="#" role="button" id="userWallet" data-target="#menuCarteira" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						<i class="material-icons">account_balance_wallet</i>R$
+						<span id="userWalletMoney">0,00</span>
+					</a>
+					<div id="menuCarteira" class="dropdown-menu menu-entrar" aria-labelledby="userWallet">
+						{% if "a" == "b" %}
+							<a class="dropdown-item" href="#">Solicitar deposito em conta</a>
+						{% else %}
+							<a class="dropdown-item" href="#">Relatorio do mês atual</a>
+						{% endif %}
+					</div>
+				</div>
+				
+				<div class="drop-link dropdown show">
+					<a class="nav-link" href="#"  role="button" id="userNotification" data-target="#menuNotificacoes" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						<i class="material-icons">notifications_none</i>
+					</a>
+					<div id="menuNotificacoes" class="dropdown-menu menu-entrar" aria-labelledby="userNotification">
+						<div id="ultimas-notificacoes">
+							<a class="notify-item">
+								<span class="notify-conteudo">Sua consulta foi agendada!</span>
+								<span class="notify-hora text-right">Ontem</span>
+							</a>
+						</div>	
+						<a class="dropdown-item notify-button" href="#">Visualizar mais notificações</a>
+					</div>
+				</div>
+				<div class="drop-link dropdown show">
+					<a class="nav-link" href="#" role="button" id="userMenuDropdown" data-target="#menuUsuario" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></a>
+					<div id="menuUsuario" class="dropdown-menu menu-entrar" aria-labelledby="userMenuDropdown">
+						{% if "a" == "b" %}
+							<a class="dropdown-item" href="#">Buscar profissionais</a>
+							<a class="dropdown-item" href="#">Editar perfil</a>
+							<a class="dropdown-item" href="#">Consultas</a>
+							<a class="dropdown-item" href="#">Sair</a>
+						{% else %}
+							<a class="dropdown-item" href="#">Painel</a>					
+							<a class="dropdown-item" href="#">Consultas</a>
+							<a class="dropdown-item" href="#">Horarios</a>
+							<a class="dropdown-item" href="#">Perfil</a>
+							<a class="dropdown-item" href="#">Editar Perfil</a>
+							<a class="dropdown-item" href="#">Sair</a>
+						{% endif %}
+					</div>
+				</div>
+			</div>	
+		</nav>
+	{% endif %}
 
-	<!--
-	<div class="box1"></div>
-	<div class="box3"></div>
-	<div class="box2"></div>
-	<div class="box4"></div>
-	-->
 	{% block body %}{% endblock %}
 
 </body>
-<footer>
+<footer class="page-footer font-small blue pt-4">
+	<div class="container-fluid text-center text-md-left">
+		<div class="row">
+			<div class="col-3">
+				<h5 class="text-uppercase">Links</h5>
+				<ul class="list-unstyled">
+					<li><a href="#!">Link 1</a></li>
+					<li><a href="#!">Link 2</a></li>
+					<li><a href="#!">Link 3</a></li>
+					<li><a href="#!">Link 4</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="footer-copyright text-center py-3">Zivot © 2019 Todos os direitos reservados.</div>
+	{% block scripts %}{% endblock %}
 	<script type="text/javascript" src="{{ url_for('static',filename='js/script.js') }}" ></script>
-	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </footer>

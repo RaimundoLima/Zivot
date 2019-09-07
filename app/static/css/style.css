@@ -7,6 +7,7 @@ body{
 	--zivot-blue: rgb(28, 133, 196);
 	--second-blue: rgb(23, 164, 252);
 	--med-green: rgb(0, 255, 204);
+	--lighgrey: rgb(230, 230, 230);
 }
 
 .navbar-logo{
@@ -17,7 +18,7 @@ body{
 }
 
 .navbar{
-	background-color: rgba(255, 255, 255, 0.7);
+	background-color: var(--lighgrey);
 	border-bottom: 2px white solid;
 	padding: 0 !important;
 }
@@ -30,8 +31,14 @@ body{
 	padding: .5rem 1rem !important;
 }
 
+.navbar-text{
+	padding-left: 1rem !important;
+	padding-right: 1rem !important;
+}
+
 .nav-link{
-	color: white;
+	font-weight: 500;
+	color: black;
 	font-style: bold;
 	margin-top: 2px;
 	margin-bottom: 2px;
@@ -39,13 +46,14 @@ body{
 	height: 100%;
 }
 
-.nav-link:hover{
+.loginDropwdown:hover{
 	color: var(--zivot-blue);
 	margin-bottom: 0;
 	border-bottom: 2px var(--zivot-blue) solid;
 }
 
 .trabalhe-conosco{
+	font-weight: 500;
 	color: var(--second-blue);
 	margin: 0px 0px 4px 0px;
 	box-sizing: border-box;
@@ -57,16 +65,17 @@ body{
 }
 
 .trabalhe-conosco:hover{
-	color: white;
-	border: 2px white solid !important;
+	color: var(--zivot-blue);
+	border: 2px var(--zivot-blue) solid !important;
 	text-decoration: none !important;
 }
 
 .menu-entrar{
+	background-color: var(--lighgrey) !important;
 	border-top: 0px white !important;
-	border-left: 2px lightgray solid !important;
-	border-right: 2px lightgray solid !important;
-	border-bottom: 2px lightgray solid !important;
+	border-left: 2px var(--second-blue) solid !important;
+	border-right: 2px var(--second-blue) solid !important;
+	border-bottom: 2px var(--second-blue) solid !important;
 	padding: 0 !important;
 	border-radius: 0% !important;
 }
@@ -76,28 +85,107 @@ body{
 }
 
 .menu-entrar .dropdown-item:hover{
-	background-color: white !important;
-	margin-bottom: 0px;
+	color: var(--zivot-blue);
+	margin-bottom: 0px;	
+	background-color: var(--lighgrey) !important;
 	border-bottom: 2px var(--zivot-blue) solid;
 }
 
-.box1{
-	height: 100px;
-	width: 100px;
-	background-color: var(--zivot-blue);
+#conteudo-container{
+	background-color: white;  
+}
+
+
+#userMenuDropdown{
+	margin-top: 0.3em;
+	margin-right: 1em;
+	background-color: white;
+	object-fit: cover;
+	height: 35px;
+	width: 35px;
+	border-radius: 100%;
+}
+
+.material-icons{
+	line-height: 0px !important;
+	vertical-align: middle;
+}
+
+.dropdown-menu{
+	left: auto !important;
+	right: 0 !important;
+}
+
+a:hover{
+	text-decoration: none !important;
+}
+
+.notify-item{
+	padding: 1% 4% 1% 4%;
+	display: inherit;
+}
+
+.notify-conteudo{
+	display: block;
+	font-size: 12px;
+}
+
+.notify-hora{
+	font-size: 10px;
+	display: block;
+}
+
+.notify-button{
+	color: black;
+}
+
+#painel-buscar, #minhas-consultas, #painel-profissional, #perfil-container{
+	padding: 0em 1.25em 0em 1.25em;
+}
+
+.right-painel{
+	background-color: white;
+	border-radius: 20px;
+}
+
+.left-painel{
+	background-color: white;
+	border-radius: 20px;
+}
+
+#consultas-disponiveis, #proximas-consultas{
+	padding: 0;
+}
+
+
+.consulta-disponivel{
 	border: 1px black solid;
 }
 
-.box2{
-	height: 100px;
-	width: 100px;
-	background-color: lightgray;
+.consulta-marcada{
 	border: 1px black solid;
 }
 
-.box3{
-	height: 100px;
-	width: 100px;
-	background-color: var(--med-green);
-	border: 1px black solid;
+.modal {
+	overflow-y: auto;
+   }
+   
+.modal-open {
+	overflow: auto;
+}
+   
+.modal-open[style] {
+   padding-right: 0px !important;
+}
+
+body:not(.modal-open){
+	padding-right: 0px !important;
+}
+
+.swiper-button-prev, .swiper-button-next{
+	background-image: none !important;
+	margin-top: 0 !important;
+	position: relative !important;
+	top: 0 !important;
+	height: auto !important;
 }

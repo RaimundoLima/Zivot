@@ -3,7 +3,48 @@
 <title>Zivot</title>
 {% endblock %}
 {% block body %}
-Oi
+
+<div id="busca-container" class="container-fluid">
+    <div class="row">
+        <div class="col-12 text-center">
+            Conectando você a saúde
+        </div>
+        <div class="col-12 text-center">
+            Busque profissionais e agende consultas de forma prática
+        </div>
+        <div class="col"></div>
+        <div class="col-6">
+            <div class="input-group">
+                <select class="custom-select" id="inputGroupSelect04" aria-label="Example select with button addon">
+                    <option selected>Especialidade</option>
+                </select>
+                <select class="custom-select" id="inputGroupSelect04" aria-label="Example select with button addon">
+                    <option selected>Estado</option>
+                </select>
+                <select class="custom-select" id="inputGroupSelect04" aria-label="Example select with button addon">
+                    <option selected>Cidade</option>
+                </select>
+                <div class="input-group-append">
+                    <button class="btn btn-outline-secondary" type="button">Buscar</button>
+                </div>
+            </div>
+        </div>
+        <div class="col"></div>
+        <diV class="col-12 text-center">Conheça a Zivot</div>
+    </div>
+</div>
+<div id="conteudo-container" class="container-fluid">
+    <div class="row">
+        <diV class="col-12 text-left">Como a Zivot funciona?</div>
+        <diV class="col-12">CONTEUDO</div>
+        <diV class="col-12 text-left">Alguns profissionais parceiros</div>
+        <diV class="col-12">CONTEUDO</div>
+        <diV class="col-12 text-left">Atendimento comunitario</div>
+        <diV class="col-12">CONTEUDO</div>
+    </div>
+</div>
+
+
 
 {% endblock %}
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
