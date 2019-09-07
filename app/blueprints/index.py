@@ -5,5 +5,5 @@ index = Blueprint('index', __name__,
 
 @index.route("/")
 def home():
-    return render_template('painel.jinja')
+    return render_template('home.jinja')
 
