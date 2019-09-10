@@ -1,0 +1,147 @@
+{% extends "layout.jinja" %}
+{% block title %}
+    <title>Zivot - Painel de Profissional</title>
+{% endblock %}
+
+{% block styles %}
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/swiper.css') }}">
+{% endblock %}
+
+{% block body %}
+    <div id="painel-container" class="container-fluid">
+        <div class="row">
+            <div id="minhas-consultas" class="col-4">
+                <div class="row left-painel">
+                    <diV class="col-12 text-left">Proximas Consultas</div>
+                    <div class="col-2"></div>
+                    <div id="proximas-consultas" class="col-8">
+                        <div class="consulta-marcada" data-toggle="modal" data-target="#modalDetalhesConsulta">
+                            <span class="profissional-consulta">João</span>
+                            <span class="horario-consulta">12:00-13:00</span>
+                        </div>
+                    </div>
+                    <div class="col-2"></div>
+                </div>
+            </div>
+                <div id="painel-profissional" class=" col-8">
+                    <div class="row right-painel">
+                        <div id="col1-pic" class="col-2">
+                        </div>
+                        <div id="col2-dados" class="col-5">
+                            <span id="nome-user">João Pedro -------------</span>
+                            <span id="especialidade-user">Cardiologista</span>
+                            <span id="localizacao-user">Rio Grande/RS</span>
+                        </div>
+                        <div id="col2-dados" class="col-5">
+                            <span id="email-user">jp.cardgiologia@gmail.com</span>
+                            <span id="telefone-user">53 91829245</span>
+                            <span id="valor-user">R$200,00</span>
+                        </div>
+                        <div class="col-12 text-center">
+                            <a href="#">Aceitar Consultas</a>
+                        </div>
+                        <div class="col-12 text-center">
+                            <a href="#">Editar Perfil</a>
+                        </div>
+                        <div class="col-12 text-center">
+                            <a href="#">Horarios</a>
+                        </div>
+                    </div>
+                </div>
+
+            <div class="modal fade" id="modalDetalhesConsulta" tabindex="-1" role="detalhes">
+                <div class="modal-dialog  modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Consulta</h5>
+                            <button id="fechar-detalhesConsulta" type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                            <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            Paciente:<span id="detalhe-paciente"></span><br>
+                            Data:<span id="detalhe-data"></span><br>
+                            Horário:<span id="detalhe-horario"></span><br>
+                            Local:R$<span id="detalhe-local"></span><br>
+                        </div>
+                        <div class="modal-footer">
+                            <button id="remarcarConsulta-modal" data-diaSemana="4" data-dia="5" data-mes="9" data-ano="2019" type="button" class="btn btn-primary"  data-toggle="modal" data-target="#modalRemarcarConsulta">Remarcar Consulta</button>
+                            <button id="cancelarConsulta-modal"type="button" class="btn btn-primary">Cancelar Consulta</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal fade" id="modalRemarcarConsulta" tabindex="-1" role="remarcar">
+                <div class="modal-dialog  modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Remarcar consulta do dia <span id="dia-consulta"></span></h5>
+                            <button id="fechar-remarcarConsulta" type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                            <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="row modal-body">
+                            <div id="horarios-dia" class="col-6">
+                                <div class="row">
+                                    <div class="col-12 text-center">
+                                        <span id="dia-selecionado">Nenhum dia selecionado!</span>
+                                    </div>
+                                    <div class="col-2"></div>
+                                    <div id="consultas-disponiveis" class="col-8">
+                                        <div class="consulta-disponivel">
+                                            <span class="horario-consulta">12:00-13:00</span>
+                                            <i class="material-icons" data-toggle="modal" data-target="#modalAgendamento">date_range</i>
+                                        </div>
+                                    </div>
+                                    <div class="col-2"></div>
+                                </div>
+                            </div>
+                            <div id="calendario-profissional" class="col-6">
+                                <div class="row">
+                                    <div class="col-4 text-right">
+                                        <a id="btn-left-calendario"><i class="material-icons">chevron_left</i></a>
+                                    </div>
+                                    <div class="col-4 text-center">
+                                        <span id="mes-calendario"></span>
+                                    </div>
+                                    <div class="col-4 text-left">
+                                        <a id="btn-right-calendario"><i class="material-icons">chevron_right</i></a>    
+                                    </div>
+                                    <div class="col-2"></div>
+                                    <div class="col-8 text-center">
+                                        <table id="" style="width:100%">
+                                            <tr>
+                                                <th>D</th>
+                                                <th>S</th>
+                                                <th>T</th>
+                                                <th>Q</th>
+                                                <th>Q</th>
+                                                <th>S</th>
+                                                <th>S</th>
+                                            </tr>
+                                        </table>
+                                        <table id="dias-calendario" style="width:100%">
+                                        </table>
+                                </div>
+                            <div class="col-2"></div>
+                        </div>
+                    </div>
+                </div>
+                    <div>
+                        <div class="modal-footer">
+                            <button id="remarcarConsulta-modal" data-diaSemana="4" data-dia="5" data-mes="9" data-ano="2019" type="button" class="btn btn-primary" disabled="true">Remarcar Consulta</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+{% block scripts %}
+    <script type="text/javascript" src="{{ url_for('static',filename='js/swiper.js') }}" ></script>
+    <script type="text/javascript" src="{{ url_for('static',filename='js/calendario.js') }}" ></script>
+    <script type="text/javascript" src="{{ url_for('static',filename='js/painel.js') }}" ></script>
+    <script type="text/javascript" src="{{ url_for('static',filename='js/modais.js') }}" ></script>
+{% endblock %}

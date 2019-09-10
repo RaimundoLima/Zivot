@@ -1,6 +1,6 @@
 {% extends "layout.jinja" %}
 {% block title %}
-    <title><!-- ESPECIALIDADE E NOME --></title>
+    <title>{{ data['nome']}} - {{data['especialidade']}}</title>
 {% endblock %}
 
 {% block styles %}
@@ -13,14 +13,14 @@
             <div id="col1-pic" class="col-2">
             </div>
             <div id="col2-dados" class="col-5">
-                <span id="nome-user">João Pedro -------------</span>
-                <span id="especialidade-user">Cardiologista</span>
-                <span id="localizacao-user">Rio Grande/RS</span>
+                <span id="nome-user">{{data['nome']}}</span>
+                <span id="especialidade-user">{{data['especialidade']}}</span>
+                <span id="localizacao-user">{{data['cidade']}}/{{data['estado']}}</span>
             </div>
             <div id="col2-dados" class="col-5">
-                <span id="email-user">jp.cardgiologia@gmail.com</span>
-                <span id="telefone-user">53 91829245</span>
-                <span id="valor-user">R$200,00</span>
+                <span id="email-user">{{data['email']}}</span>
+                <span id="telefone-user">{{data['celular']}}</span>
+                <span id="valor-user">R${{data['valor']}}</span>
             </div>
         
             <div id="horarios-dia" class="col-6">
@@ -94,11 +94,11 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    Profissional:<span id="detalhe-profissional"></span><br>
-                    Especialidade:<span id="detalhe-especialidade"></span><br>
+                    Profissional:<span id="detalhe-profissional">{{data['nome']}}</span><br>
+                    Especialidade:<span id="detalhe-especialidade">{{data['especialidade']}}</span><br>
                     Data:<span id="detalhe-data"></span><br>
                     Horário:<span id="detalhe-horario"></span><br>
-                    Valor:R$<span id="detalhe-valor"></span><br>
+                    Valor:R$<span id="detalhe-valor">{{data['valor']}}</span><br>
                     <span id="detalhe-local">Local sera enviado por email assim que a consulta for confirmada pelo profissional!</span>
                 </div>
                 <div class="modal-footer">

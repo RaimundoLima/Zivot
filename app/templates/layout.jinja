@@ -20,9 +20,9 @@
 
 </head>
 <body>
-	{% if "a" == "b" %}
+	{% if session['logado'] == undefined %}
 		<nav class="navbar navbar-light">
-			<img class="navbar-logo" src="../static/images/zivot_logo.png" alt="">
+			<img onclick="location.href='/inicio'" class="navbar-logo" src="../static/images/zivot_logo.png" alt="">
 			<div class="btn-group">
 				<a class="trabalhe-conosco" href="#">Trabalhe Conosco</a>
 				<div class="drop-link dropdown show">
@@ -30,13 +30,13 @@
 						Entrar/Cadastrar
 					</a>
 					<div class="dropdown-menu menu-entrar" aria-labelledby="loginDropwdown">
-						<a class="dropdown-item" href="#">Entrar</a>
-						<a class="dropdown-item" href="#">Cadastrar</a>
+						<a class="dropdown-item" href="/entrar">Entrar</a>
+						<a class="dropdown-item" href="/cadastro">Cadastrar</a>
 					</div>
 				</div>
 			</div>	
 		</nav>
-	{% else %}
+	{% elif session['logado'] == true %}
 		<nav class="navbar navbar-light">
 			<img class="navbar-logo" src="../static/images/zivot_logo.png" alt="">
 			<div class="btn-group">
@@ -50,9 +50,9 @@
 						<span id="userWalletMoney">0,00</span>
 					</a>
 					<div id="menuCarteira" class="dropdown-menu menu-entrar" aria-labelledby="userWallet">
-						{% if "a" == "b" %}
+						{% if session['tipo'] == "paciente" %}
 							<a class="dropdown-item" href="#">Solicitar deposito em conta</a>
-						{% else %}
+						{% elif session['tipo'] == "profissional" %}
 							<a class="dropdown-item" href="#">Relatorio do mês atual</a>
 						{% endif %}
 					</div>
@@ -73,20 +73,22 @@
 					</div>
 				</div>
 				<div class="drop-link dropdown show">
-					<a class="nav-link" href="#" role="button" id="userMenuDropdown" data-target="#menuUsuario" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></a>
+					<a class="nav-link" href="#" role="button" id="userMenuDropdown" data-target="#menuUsuario" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						<img src="{% if data is defined %} {{data['user']['foto']}} {% endif %}">
+					</a>
 					<div id="menuUsuario" class="dropdown-menu menu-entrar" aria-labelledby="userMenuDropdown">
-						{% if "a" == "b" %}
-							<a class="dropdown-item" href="#">Buscar profissionais</a>
+						{% if session['tipo'] == "paciente" %}
+							<a class="dropdown-item" href="/painel-paciente">Buscar profissionais</a>
 							<a class="dropdown-item" href="#">Editar perfil</a>
-							<a class="dropdown-item" href="#">Consultas</a>
-							<a class="dropdown-item" href="#">Sair</a>
-						{% else %}
-							<a class="dropdown-item" href="#">Painel</a>					
+							<a class="dropdown-item" href="/minhas-consultas">Consultas</a>
+							<a class="dropdown-item" href="/sair">Sair</a>
+						{% elif session['tipo'] == "profissonal" %}
+							<a class="dropdown-item" href="/painel-profissional">Painel</a>					
 							<a class="dropdown-item" href="#">Consultas</a>
 							<a class="dropdown-item" href="#">Horarios</a>
 							<a class="dropdown-item" href="#">Perfil</a>
 							<a class="dropdown-item" href="#">Editar Perfil</a>
-							<a class="dropdown-item" href="#">Sair</a>
+							<a class="dropdown-item" href="/sair">Sair</a>
 						{% endif %}
 					</div>
 				</div>

@@ -24,7 +24,7 @@ def solicitarDeposito():
 @paciente.route('painel-paciente')
 def painelPaciente():
     #definir estados FUK
-    consultas=Consulta()
+    consultas = Consulta()
     return render_template('painelPaciente.jinja')
 
 @paciente.route('/minhas-consultas')

@@ -1,0 +1,30 @@
+{% extends "layout.jinja" %}
+{% from 'formularios.jinja' import render_field %}
+
+{% block title %}
+    <title>Zivot - Recupere sua senha</title>
+{% endblock %}
+
+{% block styles %}
+{% endblock %}
+
+{% block body %}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-3"></div>
+            <div class="col-6 text-left">
+                <div class="row">
+                    <div class="col-12 text-left">Recupere sua senha</div>
+                    <form method=post>
+                        <div class="form-group">{{ render_field(form.email) }}</div>
+                        <button type="submit" class="btn btn-primary">Solicitar troca de senha</button>
+                    </form>
+                </div>
+            </div>
+            <div class="col-3"></div>
+        </div>
+    </div>
+{% endblock %}
+{% block scripts %}
+
+{% endblock %}

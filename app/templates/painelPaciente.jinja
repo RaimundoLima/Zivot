@@ -1,10 +1,6 @@
 {% extends "layout.jinja" %}
 {% block title %}
-    {% if "a" == "a" %}
-        <title>Zivot - Painel de Usuário</title>
-    {% else %}
-        <title>Zivot - Painel de Profissional</title>
-    {% endif %}
+    <title>Zivot - Painel de Usuário</title>
 {% endblock %}
 
 {% block styles %}
@@ -27,7 +23,6 @@
                     <div class="col-2"></div>
                 </div>
             </div>
-            {% if "a" == "b" %}
                 <div id="painel-buscar" class=" col-8">
                     <div class="row right-painel">
                         <diV class="col-12 text-left"> Buscar Profissionais</div>
@@ -66,34 +61,7 @@
                         </div>
                     </div>
                 </div>
-            {% else %}
-                <div id="painel-profissional" class=" col-8">
-                    <div class="row right-painel">
-                        <div id="col1-pic" class="col-2">
-                        </div>
-                        <div id="col2-dados" class="col-5">
-                            <span id="nome-user">João Pedro -------------</span>
-                            <span id="especialidade-user">Cardiologista</span>
-                            <span id="localizacao-user">Rio Grande/RS</span>
-                        </div>
-                        <div id="col2-dados" class="col-5">
-                            <span id="email-user">jp.cardgiologia@gmail.com</span>
-                            <span id="telefone-user">53 91829245</span>
-                            <span id="valor-user">R$200,00</span>
-                        </div>
-                        <div class="col-12 text-center">
-                            <a href="#">Aceitar Consultas</a>
-                        </div>
-                        <div class="col-12 text-center">
-                            <a href="#">Editar Perfil</a>
-                        </div>
-                        <div class="col-12 text-center">
-                            <a href="#">Horarios</a>
-                        </div>
-                    </div>
-                </div>
-            {% endif %}
-            <!-- Modal Agendamento-->
+
             <div class="modal fade" id="modalDetalhesConsulta" tabindex="-1" role="detalhes">
                 <div class="modal-dialog  modal-dialog-centered" role="document">
                     <div class="modal-content">
@@ -186,8 +154,8 @@
 
 {% endblock %}
 {% block scripts %}
+    <script type="text/javascript" src="{{ url_for('static',filename='js/swiper.js') }}" ></script>
     <script type="text/javascript" src="{{ url_for('static',filename='js/calendario.js') }}" ></script>
     <script type="text/javascript" src="{{ url_for('static',filename='js/painel.js') }}" ></script>
     <script type="text/javascript" src="{{ url_for('static',filename='js/modais.js') }}" ></script>
-    <script type="text/javascript" src="{{ url_for('static',filename='js/swiper.js') }}" ></script>
 {% endblock %}

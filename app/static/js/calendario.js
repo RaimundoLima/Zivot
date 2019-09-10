@@ -164,8 +164,15 @@ function verificarHorarioDia(diaNaSemana, dia, mes, ano, modo){
     icon = $(document.createElement('i'));
     icon.addClass('material-icons');
     icon.html('date_range');
-    icon.attr('data-consulta', ID VINDO DO AJAX);
-    icon.click(function(){modalAgendamento(icon.attr('data-consulta'));})
+    icon.attr('data-horaInicio',//);
+    icon.attr('data-horaTermino',//);
+    icon.attr('data-dia',//);
+    icon.attr('data-mes',//);
+    icon.attr('data-ano',//);
+
+
+    icon.click(function(){modalAgendamento(icon.attr('data-horaInicio'),icon.attr('data-horaTermino'),icon.attr('data-dia'),
+    icon.attr('data-mes'),icon.attr('data-ano'));})
 
     consulta.append(horario);
     consulta.append(icon);

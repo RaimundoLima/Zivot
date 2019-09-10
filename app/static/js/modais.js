@@ -1,34 +1,47 @@
 //ABA PERFIL
-function modalAgendamento(idConsulta){
+function modalAgendamento(horaInicio,horaTermino,dia,mes,ano){
     //AJAX
     //modificar modal
     /*
-    $('#detalhes-proffissional').html();
-    $('#detalhes-especialidade').html();
     $('#detalhe-data').html($('#dia-selecionado').attr('data-data'));
-    $('#detalhes-horario').html();
-    $('#detalhes-valor').html();
-    
+    $('#detalhes-horario').html();    
     */
 }
 
 //ABA PAINEL
-function modalDetalhesConsulta(idConsulta){
-    //AJAX
-    //modificar modal
-    /*
-    $('#detalhes-proffissional').html();
-    $('#detalhes-especialidade').html();
-    $('#detalhe-data').html();
-    $('#detalhes-horario').html();
-    $('#detalhes-local').html();
+//TIPO É SE É PROFFISIONAL OU PACIENTE
+function modalDetalhesConsulta(idConsulta, tipo){
 
-    $('#remarcarConsulta-modal').off();
-    $('#cancelarConsulta-modal').off();
-    $('#remarcarConsulta-modal').click(function(){});
-    $('#cancelarConsulta-modal').click(function(){});
-    preencher botao de remarcar com dados da data, ano dia da semana etc
-    */
+    if(tipo == 'paciente'){
+        //AJAX
+        //modificar modal
+        /*
+        $('#detalhes-proffissional').html();
+        $('#detalhes-especialidade').html();
+        $('#detalhe-data').html();
+        $('#detalhes-horario').html();
+        $('#detalhes-local').html();
+
+        $('#remarcarConsulta-modal').off();
+        $('#cancelarConsulta-modal').off();
+        $('#remarcarConsulta-modal').click(function(){});
+        $('#cancelarConsulta-modal').click(function(){});
+        preencher botao de remarcar com dados da data, ano dia da semana etc
+        */
+    }else if(tipo == 'profissional'){
+        /*
+        $('#detalhes-paciente').html();
+        $('#detalhe-data').html();
+        $('#detalhes-horario').html();
+        $('#detalhes-local').html();
+
+        $('#remarcarConsulta-modal').off();
+        $('#cancelarConsulta-modal').off();
+        $('#remarcarConsulta-modal').click(function(){});
+        $('#cancelarConsulta-modal').click(function(){});
+        preencher botao de remarcar com dados da data, ano dia da semana etc
+        */
+    }
 }
 
 $('#fechar-detalhesConsulta').click(function(){
@@ -37,7 +50,8 @@ $('#fechar-detalhesConsulta').click(function(){
 });
 
 $('#remarcarConsulta-modal').click(function(){iniciarCalendario($('#remarcarConsulta-modal').attr('data-diaSemana'),
-$('#remarcarConsulta-modal').attr('data-dia'),
-$('#remarcarConsulta-modal').attr('data-mes'),
-$('#remarcarConsulta-modal').attr('data-ano'))})
+    $('#remarcarConsulta-modal').attr('data-dia'),
+    $('#remarcarConsulta-modal').attr('data-mes'),
+    $('#remarcarConsulta-modal').attr('data-ano'))
+})
 

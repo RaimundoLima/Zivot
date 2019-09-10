@@ -15,7 +15,7 @@ icon = $(document.createElement('i'));
 icon.addClass('material-icons');
 icon.html('date_range');
 icon.attr('data-consulta', ID VINDO DO AJAX);
-icon.click(function(){modalDetalhesConsulta(icon.attr('data-consulta'));})
+icon.click(function(){modalDetalhesConsulta(icon.attr('data-consulta'), //COLOCAR TIPO DO USUARIO);})
 
 consulta.append(profissional);
 consulta.append(horario);

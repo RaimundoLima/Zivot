@@ -1,9 +1,6 @@
 from flask_wtf import FlaskForm
-from wtforms import DateField,StringField,PasswordField,Form,SubmitField,BooleanField,validators,IntegerField
+from wtforms import DateField,StringField,PasswordField,Form,SubmitField,BooleanField,validators,IntegerField,SelectField
 from wtforms.validators import DataRequired
-
-
-
 
 class form_usuario(FlaskForm):
     nome=StringField("Nome",[
@@ -55,16 +52,18 @@ class formMedico(FlaskForm):
     pass
 
 class formEmail(FlaskForm):
+    style = {'class':'form-control'}
     email=StringField("Email",[
     validators.InputRequired(message="Campo obrigatorio"),
     validators.Length(min=3,max=50,message="O nome deve ter entre 3 e 50 caracteres"),
-    validators.Email(message="Email invalido")])
+    validators.Email(message="Email invalido")],render_kw=style)
 
 class formLogin(FlaskForm):
+    style = {'class':'form-control'}
     email=StringField("Email",[
         validators.InputRequired(message="Campo obrigatorio"),
         validators.Length(min=3,max=50,message="O nome deve ter entre 3 e 50 caracteres"),
-        validators.Email(message="Email invalido")])
+        validators.Email(message="Email invalido")],render_kw=style)
     senha=PasswordField("Senha",[
         validators.InputRequired(message="Campo obrigatorio"),
-        validators.Length(min=3,max=50,message="O nome deve ter entre 3 e 50 caracteres")])
+        validators.Length(min=3,max=50,message="O nome deve ter entre 3 e 50 caracteres")],render_kw=style)

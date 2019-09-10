@@ -30,7 +30,21 @@ def inicio():
         descricao=medico.medico.descricao
         foto=medico.medico.foto
         medicos.append({'id':id,"nome":nome,"descricao":descricao,"foto":foto})
-    data={'coCriador':medicos}
+    user = {
+        'foto': 'XX'
+    }
+    data={
+        'coCriador':medicos,
+        'nome':'Luis',
+        'especialidade':'Cardiologista',
+        'cidade':'Rio Grande',
+        'estado':'RS',
+        'email':'luis@gmail.com',
+        'celular':'53 91922020',
+        'valor': 200,
+        'user':user
+    }
+    #session['tipo']='paciente'
     return render_template('inicio.jinja',data=data)
 
 @nologin.route("/recuperacao-de-senha",methods = ['GET', 'POST'])
@@ -42,7 +56,7 @@ def recuperaSenha():
             email=request.form['email']
             busca={'email':str(email)}
             usuario= Usuario.buscaGenerica(busca)
-            medico=Medico.buscaGenerica(busca)
+            medico= Medico.buscaGenerica(busca)
             if usuario !=None:
                 user=usuario
             elif medico !=None:
@@ -59,27 +73,27 @@ def recuperaSenha():
 
 @nologin.route('/codigo-de-nova-senha/<codigo>')
 def atualizaSenha(codigo):
-    busca={'codigo':codigo}
-    usuario= Usuario.buscaGenerica(busca)
-    medico=Medico.buscaGenerica(busca)
+    busca = {'codigo':codigo}
+    usuario = Usuario.buscaGenerica(busca)
+    medico = Medico.buscaGenerica(busca)
     if usuario != None:
-        user=usuario
-        tipo="paciente"
-    elif medico !=None:
-        user=medico
-        tipo='profisional'
+        user = usuario
+        tipo = "paciente"
+    elif medico != None:
+        user = medico
+        tipo ='profisional'
     else:
         #codigo invalido
         pass
-    if user.expiracao+3600>datetime.timestamp(datetime.now()):
-        session['tipo']=tipo
-        session['user']=user.toJson()
+    if user.expiracao+3600 > datetime.timestamp(datetime.now()):
+        session['tipo'] = tipo
+        session['user'] = user.toJson()
     else:
         #codigo expirado
         pass
-    if tipo=='paciente':  
+    if tipo == 'paciente':  
         redirect('/troque-sua-senha-usuario')
-    elif tipo=='profissional':  
+    elif tipo == 'profissional':  
         redirect('/troque-sua-senha-profisional')
     
 @nologin.route('/entrar',methods = ['GET', 'POST'])
@@ -88,20 +102,21 @@ def entrar():
     if request.method == 'POST':
         if form.validate:
             busca={'email':request.form['email'],'senha':hashlib.sha256(request.form['senha'])}
-            usuario= Usuario.buscaGenerica(busca)
-            medico=Medico.buscaGenerica(busca)
-            adm=Adm.buscaGenerica(busca)
-            if usuario !=None:
-                user=usuario
-                tipo='paciente'
-            elif medico !=None:
-                user=medico
-                tipo='profissional'
-            elif adm!=None:
-                user=adm
-                tipo='adm'
-            session['user']=user.toJson()
-            session['tipo']=tipo
+            usuario = Usuario.buscaGenerica(busca)
+            medico = Medico.buscaGenerica(busca)
+            adm = Adm.buscaGenerica(busca)
+            if usuario != None:
+                user = usuario
+                tipo = 'paciente'
+            elif medico != None:
+                user = medico
+                tipo = 'profissional'
+            elif adm != None:
+                user = adm
+                tipo = 'adm'
+            session['user'] = user.toJson()
+            session['tipo'] = tipo
+            session['logado'] = true
             
         redirect('/inicio')
 
@@ -113,7 +128,7 @@ def cadastro():
 
 @nologin.route('/cadastro/paciente',methods = ['GET', 'POST'])
 def cadastro_paciente():
-    form=form_usuario()
+    form = form_usuario()
     if request.method == 'POST':
         if form.validate:
             redirect('/teste')
@@ -128,7 +143,7 @@ def cadastro_paciente():
         form
     }
 }
-/cadastro-profissional-de-saude{dados do profissional}{
+/cadastro/profissional-de-saude{dados do profissional}{
     blueprint:nologin
     template:cadastroProfissionalDeSaude.jinja
     dados:{
@@ -143,7 +158,7 @@ def sair():
 
 @nologin.route('/profissional-de-saude/<int:id>')
 def profissionalDeSaude(id):
-    profissional=Medico.buscarId(id)
+    profissional = Medico.buscarId(id)
     data={
         'id':profissional.id,
         'nome':profissional.nome,
