@@ -12,6 +12,24 @@
 	SOCIAL META TAG
 	DEFINIR ROBOS
     -->
+	<link rel="apple-touch-icon" sizes="57x57" href="../static/favicon/apple-icon-57x57.png">
+	<link rel="apple-touch-icon" sizes="60x60" href="../static/favicon/apple-icon-60x60.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="../static/favicon/apple-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="76x76" href="../static/favicon/apple-icon-76x76.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="../static/favicon/apple-icon-114x114.png">
+	<link rel="apple-touch-icon" sizes="120x120" href="../static/favicon/apple-icon-120x120.png">
+	<link rel="apple-touch-icon" sizes="144x144" href="../static/favicon/apple-icon-144x144.png">
+	<link rel="apple-touch-icon" sizes="152x152" href="../static/favicon/apple-icon-152x152.png">
+	<link rel="apple-touch-icon" sizes="180x180" href="../static/favicon/apple-icon-180x180.png">
+	<link rel="icon" type="image/png" sizes="192x192"  href="../static/favicon/android-icon-192x192.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="../static/favicon/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="96x96" href="../static/favicon/favicon-96x96.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="../static/favicon/favicon-16x16.png">
+	<link rel="manifest" href="../static/favicon/manifest.json">
+	<meta name="msapplication-TileColor" content="#ffffff">
+	<meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+	<meta name="theme-color" content="#ffffff">
+	
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 	<link src="../static/css/style.css" />
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -20,7 +38,7 @@
 
 </head>
 <body>
-	{% if session['logado'] == undefined %}
+	{% if session['logado'] == false %}
 		<nav class="navbar navbar-light">
 			<img onclick="location.href='/inicio'" class="navbar-logo" src="../static/images/zivot_logo.png" alt="">
 			<div class="btn-group">
@@ -74,7 +92,7 @@
 				</div>
 				<div class="drop-link dropdown show">
 					<a class="nav-link" href="#" role="button" id="userMenuDropdown" data-target="#menuUsuario" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-						<img src="{% if data is defined %} {{data['user']['foto']}} {% endif %}">
+						<img src="">
 					</a>
 					<div id="menuUsuario" class="dropdown-menu menu-entrar" aria-labelledby="userMenuDropdown">
 						{% if session['tipo'] == "paciente" %}
@@ -82,7 +100,7 @@
 							<a class="dropdown-item" href="#">Editar perfil</a>
 							<a class="dropdown-item" href="/minhas-consultas">Consultas</a>
 							<a class="dropdown-item" href="/sair">Sair</a>
-						{% elif session['tipo'] == "profissonal" %}
+						{% elif session['tipo'] == "profissional" %}
 							<a class="dropdown-item" href="/painel-profissional">Painel</a>					
 							<a class="dropdown-item" href="#">Consultas</a>
 							<a class="dropdown-item" href="#">Horarios</a>

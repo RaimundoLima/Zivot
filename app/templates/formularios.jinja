@@ -12,3 +12,9 @@
         </div>
     {% endif %}
 {% endmacro %}
+
+{% macro render_options(options) %}
+    {% for opcao in options %}
+        <option value="{{ opcao }}">{{ opcao }}</option>
+    {% endfor %}
+{% endmacro %}

@@ -15,17 +15,17 @@ def beforeRequest():
 
 @paciente.route("/saldo-em-conta")
 def saldoEmConta():
-    return render_template('/saldo-em-conta.jinja')
+    return render_template('/saldo-em-conta.html')
 
 @paciente.route('solicitar-deposito')
 def solicitarDeposito():
-    return render_template('solicitarDeposito.jinja')#?
+    return render_template('solicitarDeposito.html')#?
 
 @paciente.route('painel-paciente')
 def painelPaciente():
     #definir estados FUK
     consultas = Consulta()
-    return render_template('painelPaciente.jinja')
+    return render_template('painelPaciente.html')
 
 @paciente.route('/minhas-consultas')
 def minhasConsultas():
@@ -41,7 +41,7 @@ def painelPaciente(idConsulta):
     'dateInicio':consulta.horario_inicio,
     'dateFim':consulta.horario_fim}}
 
-    return render_template('remarcarConsulta.jinja',data=data)
+    return render_template('remarcarConsulta.html',data=data)
 
 @paciente.route('/cancelar-consulta/<idConsulta>')
 def cancelarConsulta(idConsulta):
@@ -59,7 +59,7 @@ def cancelarConsulta(idConsulta):
 }
 /editar-perfil-paciente{
     blueprint:paciente
-    template:editarPerfil.jinja
+    template:editarPerfil.html
     dados:{
         usuario{
             celular,

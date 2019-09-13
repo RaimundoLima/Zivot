@@ -190,3 +190,7 @@ body:not(.modal-open){
 	top: 0 !important;
 	height: auto !important;
 }
+
+.bg-white{
+	background-color: white !important;
+}

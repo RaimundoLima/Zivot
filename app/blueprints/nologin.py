@@ -42,22 +42,31 @@ def inicio():
         'email':'luis@gmail.com',
         'celular':'53 91922020',
         'valor': 200,
-        'user':user
+        'user':user,
+        'especialidades':['Cardiologista','Pediatra'],
+        'estados':['RS'],
+        'cidades':['Rio Grande','Pelotas'],
+        'horas':['00','01','02','03','04','05','06','07','08','09','10','11','12','13','14','15','16','17','18','19','20','21','22','23'],
+        'minutos':['00','01','02','03','04','05','06','07','08','09','10','11','12','13','14','15','16','17','18','19','20','21','22',
+        '23','24','25','26','27','28','29','30','31','32','33','34','35','36','37','38','39','40','41','42','43','44','05','46','47','48',
+        '49','50','51','52','53','54','55','56','57','58','59','60']
     }
-    #session['tipo']='paciente'
-    return render_template('inicio.jinja',data=data)
+    session['logado'] = False
+    session['tipo'] = 'paciente'
+
+    return render_template('horarios.html',data=data)
 
 @nologin.route("/recuperacao-de-senha",methods = ['GET', 'POST'])
 def recuperaSenha():
     form = formEmail()
-    erro=None
+    erro = None
     if request.method == 'POST':
         if form.validate():
             email=request.form['email']
             busca={'email':str(email)}
-            usuario= Usuario.buscaGenerica(busca)
-            medico= Medico.buscaGenerica(busca)
-            if usuario !=None:
+            usuario = Usuario.buscaGenerica(busca)
+            medico = Medico.buscaGenerica(busca)
+            if usuario != None:
                 user=usuario
             elif medico !=None:
                 user=medico
@@ -68,8 +77,8 @@ def recuperaSenha():
             redefinir_senha([user.email],user.codigo_troca_senha)
         else:
             erro="Email null"
-            return render_template('recuperacaoDeSenha.jinja',form=form,erro=erro)
-    return render_template('recuperacaoDeSenha.jinja',form=form,erro=erro)
+            return render_template('recuperacaoDeSenha.html',form=form,erro=erro)
+    return render_template('recuperacaoDeSenha.html',form=form,erro=erro)
 
 @nologin.route('/codigo-de-nova-senha/<codigo>')
 def atualizaSenha(codigo):
@@ -114,17 +123,19 @@ def entrar():
             elif adm != None:
                 user = adm
                 tipo = 'adm'
+            else:
+                redirect('/entrar')
             session['user'] = user.toJson()
             session['tipo'] = tipo
-            session['logado'] = true
+            session['logado'] = True
             
         redirect('/inicio')
 
-    return render_template('entrar.jinja',form=form)
+    return render_template('entrar.html',form=form)
 
 @nologin.route('/cadastro')
 def cadastro():
-    return render_template('cadastro.jinja')
+    return render_template('cadastro.html')
 
 @nologin.route('/cadastro/paciente',methods = ['GET', 'POST'])
 def cadastro_paciente():
@@ -133,19 +144,19 @@ def cadastro_paciente():
         if form.validate:
             redirect('/teste')
         redirect('/teste')
-    return render_template('cadastroPaciente.jinja',form)
+    return render_template('cadastroPaciente.html',form)
 '''
 
 /cadastro/paciente{dados do paciente}{
     blueprint:nologin
-    template:cadastroPaciente.jinja
+    template:cadastroPaciente.html
     dados:{
         form
     }
 }
 /cadastro/profissional-de-saude{dados do profissional}{
     blueprint:nologin
-    template:cadastroProfissionalDeSaude.jinja
+    template:cadastroProfissionalDeSaude.html
     dados:{
         form
     }
@@ -169,7 +180,7 @@ def profissionalDeSaude(id):
         'celular':profissional.celular,
         'valor':profissional.valor
     }
-    return render_template('profissional-de-saude.jinja',data=data)
+    return render_template('profissional-de-saude.html',data=data)
 
 '''
 /profissional-de-saude/{idprofissional}/calendario/{data}

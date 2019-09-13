@@ -2,15 +2,18 @@ meses = ["Janeiro","Fevereiro","Março","Abril","Maio","Junho","Julho","Agosto",
 diasmeses = [31,28,31,30,31,30,31,31,30,31,30,31];
 diassemana = ["Domingo","Segunda","Terça","Quarta","Quinta","Sexta","Sabado"]
 diasabrev = ["DOM ","SEG ","TER ","QUA ","QUI ","SEX ","SAB "]
-atual = 0;
+d = new Date();
+atual = d.getMonth();
 diaInicial = 0;
 diaFinal = 0;
-ano = 0000;
+ano = d.getFullYear();
 
-function iniciarCalendario(diasemana,dia,atual,ano){
-    $("#mes-calendario").html(meses[atual]);
-
+function iniciarCalendario(diasemana,dia,mes,anoatual,mesDiv,diasDiv){
+    atual = mes;
+    ano = anoatual;
     éBissexto(ano);
+
+    mesDiv.html(meses[mes]+"/"+ano);
 
     var diaInicial = diasemana;
     for(aux = dia; aux > 1; aux--){
@@ -25,10 +28,10 @@ function iniciarCalendario(diasemana,dia,atual,ano){
     }
     
     diaFinal = diaInicial;
-    for(aux = 1; aux < diasmeses[atual]; aux++){
+    for(aux = 1; aux < diasmeses[mes]; aux++){
         diaFinal = (diaFinal+1)%7;
     }
-    gerarCalendario(diaInicial,atual,ano);
+    gerarCalendario(diaInicial,atual,ano,diasDiv);
 }
 
 function éBissexto(ano){
@@ -46,8 +49,8 @@ function éBissexto(ano){
     }
 }
 
-function gerarCalendario(diaInicial,atual,ano){
-    $('#dias-calendario').empty();
+function gerarCalendario(diaInicial,atual,ano,diasDiv){
+    diasDiv.empty();
     aux1 = atual-1;
     if(aux1 == -1) aux1 = 11;
     var diaMesAnt = diasmeses[aux1]-diaFinalMesPassado;
@@ -72,7 +75,7 @@ function gerarCalendario(diaInicial,atual,ano){
         diaAtual++;
         tr.append(td);
     }
-    $("#dias-calendario").append(tr);
+    diasDiv.append(tr);
     cont = Math.ceil((diasmeses[atual] - (diaAtual-1))/7);
     for(aux3 = 0;aux3 < cont;aux3++){
         aux5 = 0;
@@ -90,7 +93,7 @@ function gerarCalendario(diaInicial,atual,ano){
             diaAtual++;
             tr.append(td);
         }
-        $("#dias-calendario").append(tr);
+        diasDiv.append(tr);
     }
 }
 
@@ -101,7 +104,7 @@ $("#btn-left-calendario").click(function(){
         ano--;
     }
     éBissexto(ano);
-    $("#mes-calendario").html(meses[atual]);
+    $("#mes-calendario").html(meses[atual]+"/"+ano);
     diaFinal = diaFinalMesPassado;
     diaInicial = diaFinalMesPassado;
     for(aux = diasmeses[atual]; aux > 1; aux--){
@@ -115,14 +118,14 @@ $("#btn-left-calendario").click(function(){
     }else{
         diaFinalMesPassado = diaInicial-1;
     }
-    gerarCalendario(diaInicial,atual,ano);
+    gerarCalendario(diaInicial,atual,ano,$("#dias-calendario"));
 });
 
 $("#btn-right-calendario").click(function(){
     if(atual == 11) ano++;
     éBissexto(ano);
     atual = (atual + 1)%12;
-    $("#mes-calendario").html(meses[atual]);
+    $("#mes-calendario").html(meses[atual]+"/"+ano);
     diaInicial = (diaFinal+1)%7;
     if(diaInicial == 0){
         diaFinalMesPassado = 6;
@@ -133,7 +136,49 @@ $("#btn-right-calendario").click(function(){
     for(aux = 1; aux < diasmeses[atual]; aux++){
         diaFinal = (diaFinal+1)%7;
     }
-    gerarCalendario(diaInicial,atual,ano);
+    gerarCalendario(diaInicial,atual,ano,$("#dias-calendario"));
+});
+
+$("#btn-left-calendario1").click(function(){
+    atual = atual-1;
+    if(atual == -1){
+        atual = 11;
+        ano--;
+    }
+    éBissexto(ano);
+    $("#mes-calendario1").html(meses[atual]+"/"+ano);
+    diaFinal = diaFinalMesPassado;
+    diaInicial = diaFinalMesPassado;
+    for(aux = diasmeses[atual]; aux > 1; aux--){
+        diaInicial = diaInicial-1;
+        if(diaInicial == -1){
+            diaInicial = 6;
+        }
+    }
+    if(diaInicial == 0){
+        diaFinalMesPassado = 6;
+    }else{
+        diaFinalMesPassado = diaInicial-1;
+    }
+    gerarCalendario(diaInicial,atual,ano,$("#dias-calendario1"));
+});
+
+$("#btn-right-calendario1").click(function(){
+    if(atual == 11) ano++;
+    éBissexto(ano);
+    atual = (atual + 1)%12;
+    $("#mes-calendario1").html(meses[atual]+"/"+ano);
+    diaInicial = (diaFinal+1)%7;
+    if(diaInicial == 0){
+        diaFinalMesPassado = 6;
+    }else{
+        diaFinalMesPassado = diaInicial-1;
+    }
+    diaFinal = diaInicial;
+    for(aux = 1; aux < diasmeses[atual]; aux++){
+        diaFinal = (diaFinal+1)%7;
+    }
+    gerarCalendario(diaInicial,atual,ano,$("#dias-calendario1"));
 });
 
 function construirDia(tag, diaSemana, dia, mes, ano){

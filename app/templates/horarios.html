@@ -1,0 +1,221 @@
+{% extends "layout.jinja" %}
+{% from 'formularios.jinja' import render_options %}
+
+{% block title %}
+    <title>Meus horários - Zivot</title>
+{% endblock %}
+
+{% block styles %}
+{% endblock %}
+
+{% block body %}
+<div class="container-fluid bg-white">
+    <div class="row">
+        <div class="col-12">Horários</div>
+        <div class="col-6">
+            <span>Definir horários padrões</span>
+            <button id="definirDomingo" data-dia="domingo" data-toggle="modal" data-target="#modalDefinirHorario"
+                type="button" class="btn btn-primary">Domingo</button>
+            <button id="definirSegunda" data-dia="segunda" data-toggle="modal" data-target="#modalDefinirHorario"
+                type="button" class="btn btn-primary">Segunda</button>
+            <button id="definirTerca" data-dia="terça" data-toggle="modal" data-target="#modalDefinirHorario"
+                type="button" class="btn btn-primary">Terça</button>
+            <button id="definirQuarta" data-dia="quarta" data-toggle="modal" data-target="#modalDefinirHorario"
+                type="button" class="btn btn-primary">Quarta</button>
+            <button id="definirQuinta" data-dia="quinta" data-toggle="modal" data-target="#modalDefinirHorario"
+                type="button" class="btn btn-primary">Quinta</button>
+            <button id="definirSexta" data-dia="sexta" data-toggle="modal" data-target="#modalDefinirHorario"
+                type="button" class="btn btn-primary">Sexta</button>
+            <button id="definirSabado" data-dia="sábado" data-toggle="modal" data-target="#modalDefinirHorario"
+                type="button" class="btn btn-primary">Sábado</button>
+        </div>
+        <div class="col-6">
+            <button id="AdicionarCompromisso-modal" type="button" data-toggle="modal"
+                data-target="#modalAdicionarCompromisso" class="btn btn-primary">Adicionar compromisso</button>
+            <button id="HorarioExtra-modal" type="button" data-toggle="modal" data-target="#modalHorarioExtra"
+                class="btn btn-primary">Adicionar horário extra</button>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modalDefinirHorario" tabindex="-1" role="remarcar">
+    <div class="modal-dialog  modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="">Horários de <span id="dia-da-semana"></span></h5>
+                <button id="fechar-DefinirHorario" type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="row modal-body">
+                <div class="row col-12">
+                    <div class="col-12">Selecione o horário</div>
+                    <div class="input-group col-6">
+                        Das
+                        <select class="custom-select" id="hora-inicio" aria-label="">
+                            {{render_options(data['horas'])}}
+                        </select>
+                        <select class="custom-select" id="minuto-inicio" aria-label="">
+                            {{render_options(data['minutos'])}}
+                        </select>
+                    </div>
+                    <div class="input-group col-6">
+                        Até as
+                        <select class="custom-select" id="hora-final" aria-label="">
+                            {{render_options(data['horas'])}}
+                        </select>
+                        <select class="custom-select" id="minuto-final" aria-label="">
+                            {{render_options(data['minutos'])}}
+                        </select>
+                    </div>
+                    <div class="col-12"><button class="btn btn-primary">Adicionar horário</button></div>
+                </div>
+                <div class="row col-12">
+                    <div class="col-12">Horários atuais</div>
+                    <div id="horarios-atuais" class="col-12">
+                        <div class="horario">
+                            <span class="horario-consulta">12:00-13:00</span>
+                            <i class="material-icons"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+
+<div class="modal fade" id="modalAdicionarCompromisso" tabindex="-1" role="remarcar">
+    <div class="modal-dialog  modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="">Adicionar compromisso</span></h5>
+                <button id="fechar-adicionarCompromisso" type="button" class="close" data-dismiss="modal"
+                    aria-label="Fechar">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="row modal-body">
+                <div id="calendario-profissional" class="col-12">
+                    <div class="row">
+                        <div class="col-4 text-right">
+                            <a id="btn-left-calendario"><i class="material-icons">chevron_left</i></a>
+                        </div>
+                        <div class="col-4 text-center">
+                            <span id="mes-calendario"></span>
+                        </div>
+                        <div class="col-4 text-left">
+                            <a id="btn-right-calendario"><i class="material-icons">chevron_right</i></a>
+                        </div>
+                        <div class="col-2"></div>
+                        <div class="col-8 text-center">
+                            <table id="" style="width:100%">
+                                <tr>
+                                    <th>D</th>
+                                    <th>S</th>
+                                    <th>T</th>
+                                    <th>Q</th>
+                                    <th>Q</th>
+                                    <th>S</th>
+                                    <th>S</th>
+                                </tr>
+                            </table>
+                            <table id="dias-calendario" style="width:100%">
+                            </table>
+                        </div>
+                        <div class="row col-12">
+                            <div class="col-12">Horários</div>
+                            <div id="horarios-atuais" class="col-12">
+                                <div class="horario">
+                                    <span class="horario-consulta">12:00-13:00</span>
+                                    <i class="material-icons"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modalHorarioExtra" tabindex="-1" role="remarcar">
+    <div class="modal-dialog  modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="">Adicionar horário extra</span></h5>
+                <button id="fechar-horarioExtra" type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="row modal-body">
+                <div id="calendario-profissional1" class="col-12">
+                    <div class="row">
+                        <div class="col-4 text-right">
+                            <a id="btn-left-calendario1"><i class="material-icons">chevron_left</i></a>
+                        </div>
+                        <div class="col-4 text-center">
+                            <span id="mes-calendario1"></span>
+                        </div>
+                        <div class="col-4 text-left">
+                            <a id="btn-right-calendario1"><i class="material-icons">chevron_right</i></a>
+                        </div>
+                        <div class="col-2"></div>
+                        <div class="col-8 text-center">
+                            <table id="" style="width:100%">
+                                <tr>
+                                    <th>D</th>
+                                    <th>S</th>
+                                    <th>T</th>
+                                    <th>Q</th>
+                                    <th>Q</th>
+                                    <th>S</th>
+                                    <th>S</th>
+                                </tr>
+                            </table>
+                            <table id="dias-calendario1" style="width:100%">
+                            </table>
+                        </div>
+                        <div class="row col-12">
+                            <div class="col-12">Horários atuais</div>
+                            <div id="horarios-atuais" class="col-12">
+                                <div class="horario">
+                                    <span class="horario-consulta">12:00-13:00</span>
+                                    <i class="material-icons"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row col-12">
+                            <div class="col-12">Selecione o horário</div>
+                            <div class="input-group col-6">
+                                Das
+                                <select class="custom-select" id="hora-inicioExtra" aria-label="">
+                                    {{render_options(data['horas'])}}
+                                </select>
+                                <select class="custom-select" id="minuto-inicioExtra" aria-label="">
+                                    {{render_options(data['minutos'])}}
+                                </select>
+                            </div>
+                            <div class="input-group col-6">
+                                Até as
+                                <select class="custom-select" id="hora-finalExtra" aria-label="">
+                                    {{render_options(data['horas'])}}
+                                </select>
+                                <select class="custom-select" id="minuto-finalExtra" aria-label="">
+                                    {{render_options(data['minutos'])}}
+                                </select>
+                            </div>
+                            <div class="col-12"><button class="btn btn-primary">Adicionar horário</button></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block scripts %}
+    <script type="text/javascript" src="{{ url_for('static',filename='js/calendario.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static',filename='js/horarios.js') }}"></script>
+{% endblock %}

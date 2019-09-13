@@ -13,7 +13,7 @@ def atualizarNotificacoes():
 
 @notificacao.routes('/notificacoes')
 def notificacoes():
-    return render_template('notificacao.jinja')
+    return render_template('notificacao.html')
 '''
 /visualizar-notificacoes{
     blueprint:notificacao
@@ -31,7 +31,7 @@ def notificacoes():
 }
 /notificacoes{
     blueprint:notificacao
-    template:notificacoes.jinja
+    template:notificacoes.html
     dados:{
         notificacoes[todas]{
             id,

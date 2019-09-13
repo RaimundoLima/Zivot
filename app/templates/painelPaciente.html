@@ -1,6 +1,8 @@
 {% extends "layout.jinja" %}
+{% from 'formularios.jinja' import render_options %}
+
 {% block title %}
-    <title>Zivot - Painel de Usuário</title>
+    <title>Painel de Usuário - Zivot</title>
 {% endblock %}
 
 {% block styles %}
@@ -29,14 +31,14 @@
                         <div class="col-3"></div>
                         <div class="col-6">
                             <div class="input-group">
-                                <select class="custom-select" id="inputGroupSelect04" aria-label="Example select with button addon">
-                                    <option selected>Especialidade</option>
+                                <select class="custom-select" id="">
+                                    {{render_options(data['especialidades'])}}
                                 </select>
-                                <select class="custom-select" id="inputGroupSelect04" aria-label="Example select with button addon">
-                                    <option selected>Estado</option>
+                                <select class="custom-select" id="">
+                                    {{render_options(data['estados'])}}
                                 </select>
-                                <select class="custom-select" id="inputGroupSelect04" aria-label="Example select with button addon">
-                                    <option selected>Cidade</option>
+                                <select class="custom-select" id="">
+                                        {{render_options(data['cidades'])}}
                                 </select>
                                 <div class="input-group-append">
                                     <button class="btn btn-outline-secondary" type="button">Buscar</button>
@@ -79,7 +81,7 @@
                             Local:R$<span id="detalhe-local"></span><br>
                         </div>
                         <div class="modal-footer">
-                            <button id="remarcarConsulta-modal" data-diaSemana="4" data-dia="5" data-mes="9" data-ano="2019" type="button" class="btn btn-primary"  data-toggle="modal" data-target="#modalRemarcarConsulta">Remarcar Consulta</button>
+                            <button id="remarcarConsulta-modal" data-diaSemana="4" data-dia="5" data-mes="9" data-ano="2020" type="button" class="btn btn-primary"  data-toggle="modal" data-target="#modalRemarcarConsulta">Remarcar Consulta</button>
                             <button id="cancelarConsulta-modal"type="button" class="btn btn-primary">Cancelar Consulta</button>
                         </div>
                     </div>
@@ -113,13 +115,13 @@
                             </div>
                             <div id="calendario-profissional" class="col-6">
                                 <div class="row">
-                                    <div class="col-4 text-right">
+                                    <div class="col-2 text-right">
                                         <a id="btn-left-calendario"><i class="material-icons">chevron_left</i></a>
                                     </div>
-                                    <div class="col-4 text-center">
+                                    <div class="col-8 text-center">
                                         <span id="mes-calendario"></span>
                                     </div>
-                                    <div class="col-4 text-left">
+                                    <div class="col-2 text-left">
                                         <a id="btn-right-calendario"><i class="material-icons">chevron_right</i></a>    
                                     </div>
                                     <div class="col-2"></div>
@@ -144,7 +146,7 @@
                 </div>
                     <div>
                         <div class="modal-footer">
-                            <button id="remarcarConsulta-modal" data-diaSemana="4" data-dia="5" data-mes="9" data-ano="2019" type="button" class="btn btn-primary" disabled="true">Remarcar Consulta</button>
+                            <button id="" type="button" class="btn btn-primary" disabled="true">Remarcar Consulta</button>
                         </div>
                     </div>
                 </div>

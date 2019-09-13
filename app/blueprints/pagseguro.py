@@ -1,7 +1,7 @@
 '''
 /profissional-de-saude/{idprofissional}/gerar-consulta/{dateTime}{
     blueprint:paciente
-    template:profissionalDesSaudeGerarConsulta.jinja
+    template:profissionalDesSaudeGerarConsulta.html
     dados:{
         consulta{
             nomeProfissional,

@@ -24,7 +24,7 @@ function modalDetalhesConsulta(idConsulta, tipo){
 
         $('#remarcarConsulta-modal').off();
         $('#cancelarConsulta-modal').off();
-        $('#remarcarConsulta-modal').click(function(){});
+        $('#remarcarConsulta-modal').click(function(){iniciarCalendario($(this).attr('data-diaSemana'),parseInt($(this).attr('data-dia')),parseInt($(this).attr('data-mes')),parseInt($(this).attr('data-ano')),$("#mes-calendario"),$("#dias-calendario"))})
         $('#cancelarConsulta-modal').click(function(){});
         preencher botao de remarcar com dados da data, ano dia da semana etc
         */
@@ -37,7 +37,7 @@ function modalDetalhesConsulta(idConsulta, tipo){
 
         $('#remarcarConsulta-modal').off();
         $('#cancelarConsulta-modal').off();
-        $('#remarcarConsulta-modal').click(function(){});
+        $('#remarcarConsulta-modal').click(function(){iniciarCalendario($(this).attr('data-diaSemana'),parseInt($(this).attr('data-dia')),parseInt($(this).attr('data-mes')),parseInt($(this).attr('data-ano')),$("#mes-calendario"),$("#dias-calendario"))})
         $('#cancelarConsulta-modal').click(function(){});
         preencher botao de remarcar com dados da data, ano dia da semana etc
         */
@@ -49,9 +49,6 @@ $('#fechar-detalhesConsulta').click(function(){
     $('#cancelarConsulta-modal').off("click");
 });
 
-$('#remarcarConsulta-modal').click(function(){iniciarCalendario($('#remarcarConsulta-modal').attr('data-diaSemana'),
-    $('#remarcarConsulta-modal').attr('data-dia'),
-    $('#remarcarConsulta-modal').attr('data-mes'),
-    $('#remarcarConsulta-modal').attr('data-ano'))
-})
+$('#remarcarConsulta-modal').click(function(){iniciarCalendario($(this).attr('data-diaSemana'),parseInt($(this).attr('data-dia')),
+parseInt($(this).attr('data-mes')),parseInt($(this).attr('data-ano')),$("#mes-calendario"),$("#dias-calendario"))})
 

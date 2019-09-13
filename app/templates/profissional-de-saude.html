@@ -1,6 +1,6 @@
 {% extends "layout.jinja" %}
 {% block title %}
-    <title>{{ data['nome']}} - {{data['especialidade']}}</title>
+    <title>{{ data['nome']}} - {{data['especialidade']}} - Zivot</title>
 {% endblock %}
 
 {% block styles %}
@@ -108,9 +108,9 @@
         </div>
     </div>
 {% endblock %}
-{% block scripts %}
+{% block scripts %}    
+    <script type="text/javascript" src="{{ url_for('static',filename='js/swiper.js') }}" ></script>
     <script type="text/javascript" src="{{ url_for('static',filename='js/calendario.js') }}" ></script>
     <script type="text/javascript" src="{{ url_for('static',filename='js/perfil.js') }}" ></script>
     <script type="text/javascript" src="{{ url_for('static',filename='js/modais.js') }}" ></script>
-    <script type="text/javascript" src="{{ url_for('static',filename='js/swiper.js') }}" ></script>
 {% endblock %}
