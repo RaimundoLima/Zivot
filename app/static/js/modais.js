@@ -49,6 +49,8 @@ $('#fechar-detalhesConsulta').click(function(){
     $('#cancelarConsulta-modal').off("click");
 });
 
+
+//COLOCAR NO FOR QUE APARECE DAS CONSULTAS NO PAINEL DE PACIENTE OU PROFISSIONAL
 $('#remarcarConsulta-modal').click(function(){iniciarCalendario($(this).attr('data-diaSemana'),parseInt($(this).attr('data-dia')),
 parseInt($(this).attr('data-mes')),parseInt($(this).attr('data-ano')),$("#mes-calendario"),$("#dias-calendario"))})
 

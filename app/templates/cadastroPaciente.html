@@ -1,0 +1,44 @@
+{% extends "layout.jinja" %}
+{% from 'formularios.jinja' import render_field %}
+
+{% block title %}
+    <title>Cadastro de usuario - Zivot</title>
+{% endblock %}
+
+{% block styles %}
+{% endblock %}
+
+{% block body %}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-3"></div>
+            <div class="col-6 text-left bg-white">
+                <div class="row">
+                    <div class="col-12 text-left">Recupere sua senha</div>
+                    <form method=post>
+                        <div class="form-group">{{ render_field(form.nome) }}</div>
+                        <div class="form-group">{{ render_field(form.senha) }}</div>
+                        <div class="form-group">{{ render_field(form.confirma_senha) }}</div>
+                        <div class="form-group">{{ render_field(form.email) }}</div>
+                        <div class="form-group">{{ render_field(form.celular) }}</div>
+                        <div class="form-group">{{ render_field(form.sexo) }}</div>
+                        <div class="form-group">{{ render_field(form.nascimento) }}</div>
+                        <div class="form-group">{{ render_field(form.pf) }}</div>
+                        <div class="form-group">{{ render_field(form.estado) }}</div>
+                        <div class="form-group">{{ render_field(form.cidade) }}</div>
+                        <div class="form-group">{{ render_field(form.bairro) }}</div>
+                        <div class="form-group">{{ render_field(form.rua) }}</div>
+                        <div class="form-group">{{ render_field(form.numero) }}</div>
+                        <div class="form-group">{{ render_field(form.complemento) }}</div>
+                        <div class="form-group">{{ render_field(form.receber_noticias) }}</div>
+                        <button type="submit" class="btn btn-primary">Solicitar troca de senha</button>
+                    </form>
+                </div>
+            </div>
+            <div class="col-3"></div>
+        </div>
+    </div>
+{% endblock %}
+{% block scripts %}
+
+{% endblock %}

@@ -2,17 +2,28 @@
 {% from 'formularios.jinja' import render_field %}
 
 {% block title %}
-    <title>Minhas Notificações - Zivot</title>
+<title>Minhas Notificações - Zivot</title>
 {% endblock %}
 
 {% block styles %}
 {% endblock %}
 
 {% block body %}
-    <div class="container-fluid">
-        
+<div class="container-fluid">
+    <div class="row bg-white">
+        <div class="col-12">Notificações</div>
+        <div class="col-12 row">
+            <div id="notificacao" class="col-12 row">
+                <div class="col-10 text-left">Consulta com  ___ concluida, deixe seu feedback sobre o profissional!</div>
+                <div class="col-2 text-right">Hoje, 15hrs</div>
+            </div>
+            <div id="notificacao1" class="col-12 row">
+                <div class="col-10 text-left">Você tem uma consulta hoje!</div>
+                <div class="col-2 text-right">Hoje, 11hrs</div>
+            </div>
+        </div>
     </div>
+</div>
 {% endblock %}
 {% block scripts %}
-
 {% endblock %}

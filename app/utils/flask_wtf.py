@@ -3,23 +3,25 @@ from wtforms import DateField,StringField,PasswordField,Form,SubmitField,Boolean
 from wtforms.validators import DataRequired
 
 class form_usuario(FlaskForm):
+    style = {'class':'form-control'}
+    
     nome=StringField("Nome",[
         validators.InputRequired(message="Campo obrigatorio"),
-        validators.Length(min=3,max=50,message="O nome deve ter entre 3 e 50 caracteres")])
+        validators.Length(min=3,max=50,message="O nome deve ter entre 3 e 50 caracteres")],render_kw=style)
     senha=PasswordField("Senha",[
         validators.InputRequired(message="Campo obrigatorio"),
-        validators.Length(min=3,max=50,message="O nome deve ter entre 3 e 50 caracteres")])
+        validators.Length(min=3,max=50,message="O nome deve ter entre 3 e 50 caracteres")],render_kw=style)
     confirma_senha = PasswordField('Repita a senha',[
-        validators.EqualTo("senha",message="As senhas devem ser iguais")])
+        validators.EqualTo("senha",message="As senhas devem ser iguais")],render_kw=style)
     email=StringField("Email",[
         validators.InputRequired(message="Campo obrigatorio"),
         validators.Length(min=3,max=50,message="O nome deve ter entre 3 e 50 caracteres"),
-        validators.Email(message="Email invalido")])
+        validators.Email(message="Email invalido")],render_kw=style)
     celular=IntegerField('celular',
-        validators.InputRequired())
+    validators.InputRequired(message="Campo obrigatorio"),render_kw=style)
     sexo=SelectField(
         'Sexo',
-        choices=[('Masculino', 'Masculino'), ('Feminino', 'Feminino'), ('Não Binario', 'Não Binario')])
+        choices=[('Masculino', 'Masculino'), ('Feminino', 'Feminino'), ('Não Binario', 'Não Binario')],render_kw=style)
 
     def validate_sexo(self, field):
         if field.data =="Masculino" or field.data == "Feminino" or field.data=="Não Binario":
@@ -28,8 +30,8 @@ class form_usuario(FlaskForm):
             raise ValidationError('sexo invalido')
 
     nascimento=DateField('Nascimento',
-        validators.InputRequired()),
-    cpf=StringField('CPF',validators.InputRequired()),
+        validators.InputRequired(message="Campo obrigatorio")),
+    pf=StringField('CPF',validators.InputRequired(message="Campo obrigatorio")),
     def validate_cpf(self,field):
         pass
     estado=SelectField('Estado',choices=[]),##ancap
@@ -38,10 +40,10 @@ class form_usuario(FlaskForm):
     cidade=SelectField('Cidade',choices=[]),##ancap
     def validate_cidade(self,field):
         pass
-    cep=StringField("CEP",validators.InputRequired()),
-    bairro=StringField("Bairro",validators.InputRequired()),
-    rua=StringField("Rua",validators.InputRequired()),
-    numero=IntegerField('Numero',validators.InputRequired()),
+    cep=StringField("CEP",validators.InputRequired(message="Campo obrigatorio")),
+    bairro=StringField("Bairro",validators.InputRequired(message="Campo obrigatorio")),
+    rua=StringField("Rua",validators.InputRequired(message="Campo obrigatorio")),
+    numero=IntegerField('Numero',validators.InputRequired(message="Campo obrigatorio")),
     complemento=StringField(),
     receber_noticias=BooleanField(),
 

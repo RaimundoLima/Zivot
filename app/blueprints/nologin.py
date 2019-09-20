@@ -1,7 +1,7 @@
 from flask import render_template,Blueprint,redirect,request,session,url_for
 from app.models import Usuario,Medico,Adm,CoCriador,Especialidade,Consulta
 from app.utils.flask_mail import redefinir_senha
-from app.utils.flask_wtf import formEmail,formLogin
+from app.utils.flask_wtf import formEmail,formLogin,form_usuario
 
 from datetime import datetime
 import hashlib
@@ -51,10 +51,10 @@ def inicio():
         '23','24','25','26','27','28','29','30','31','32','33','34','35','36','37','38','39','40','41','42','43','44','05','46','47','48',
         '49','50','51','52','53','54','55','56','57','58','59','60']
     }
-    session['logado'] = False
+    session['logado'] = True
     session['tipo'] = 'paciente'
 
-    return render_template('horarios.html',data=data)
+    return render_template('cadastroPor.html',data=data)
 
 @nologin.route("/recuperacao-de-senha",methods = ['GET', 'POST'])
 def recuperaSenha():
@@ -144,7 +144,7 @@ def cadastro_paciente():
         if form.validate:
             redirect('/teste')
         redirect('/teste')
-    return render_template('cadastroPaciente.html',form)
+    return render_template('cadastroPaciente.html',form=form)
 '''
 
 /cadastro/paciente{dados do paciente}{

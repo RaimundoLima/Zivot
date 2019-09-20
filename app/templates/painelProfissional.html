@@ -1,6 +1,6 @@
 {% extends "layout.jinja" %}
 {% block title %}
-    <title>Zivot - Painel de Profissional</title>
+    <title>Painel de Profissional - Zivot</title>
 {% endblock %}
 
 {% block styles %}
@@ -50,87 +50,97 @@
                 </div>
 
             <div class="modal fade" id="modalDetalhesConsulta" tabindex="-1" role="detalhes">
-                <div class="modal-dialog  modal-dialog-centered" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Consulta</h5>
-                            <button id="fechar-detalhesConsulta" type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+            <div class="modal-dialog  modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="">Consulta</h5>
+                        <button id="fechar-detalhesConsulta" type="button" class="close" data-dismiss="modal"
+                            aria-label="Fechar">
                             <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            Paciente:<span id="detalhe-paciente"></span><br>
-                            Data:<span id="detalhe-data"></span><br>
-                            Horário:<span id="detalhe-horario"></span><br>
-                            Local:R$<span id="detalhe-local"></span><br>
-                        </div>
-                        <div class="modal-footer">
-                            <button id="remarcarConsulta-modal" data-diaSemana="4" data-dia="5" data-mes="9" data-ano="2019" type="button" class="btn btn-primary"  data-toggle="modal" data-target="#modalRemarcarConsulta">Remarcar Consulta</button>
-                            <button id="cancelarConsulta-modal"type="button" class="btn btn-primary">Cancelar Consulta</button>
-                        </div>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        Profissional:<span id="detalhe-profissional"></span><br>
+                        Especialidade:<span id="detalhe-especialidade"></span><br>
+                        Data:<span id="detalhe-data"></span><br>
+                        Horário:<span id="detalhe-horario"></span><br>
+                        Local:R$<span id="detalhe-local"></span><br>
+                    </div>
+                    <div class="modal-footer">
+                        <button id="remarcarConsulta-modal" data-diaSemana="4" data-dia="5" data-mes="9" data-ano="2020"
+                            type="button" class="btn btn-primary" data-toggle="modal"
+                            data-target="#modalRemarcarConsulta">Remarcar Consulta</button>
+                        <button id="cancelarConsulta-modal" type="button" class="btn btn-primary" data-toggle="modal"
+                        data-target="#modalCancelarConsulta">Cancelar
+                            Consulta</button>
                     </div>
                 </div>
             </div>
+        </div>
 
-            <div class="modal fade" id="modalRemarcarConsulta" tabindex="-1" role="remarcar">
-                <div class="modal-dialog  modal-dialog-centered" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Remarcar consulta do dia <span id="dia-consulta"></span></h5>
-                            <button id="fechar-remarcarConsulta" type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+        <div class="modal fade" id="modalRemarcarConsulta" tabindex="-1" role="remarcar">
+            <div class="modal-dialog  modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Remarcar consulta do dia <span
+                                id="dia-consulta"></span></h5>
+                        <button id="fechar-remarcarConsulta" type="button" class="close" data-dismiss="modal"
+                            aria-label="Fechar">
                             <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="row modal-body">
-                            <div id="horarios-dia" class="col-6">
-                                <div class="row">
-                                    <div class="col-12 text-center">
-                                        <span id="dia-selecionado">Nenhum dia selecionado!</span>
-                                    </div>
-                                    <div class="col-2"></div>
-                                    <div id="consultas-disponiveis" class="col-8">
-                                        <div class="consulta-disponivel">
-                                            <span class="horario-consulta">12:00-13:00</span>
-                                            <i class="material-icons" data-toggle="modal" data-target="#modalAgendamento">date_range</i>
-                                        </div>
-                                    </div>
-                                    <div class="col-2"></div>
+                        </button>
+                    </div>
+                    <div class="row modal-body">
+                        <div id="horarios-dia" class="col-6">
+                            <div class="row">
+                                <div class="col-12 text-center">
+                                    <span id="dia-selecionado">Nenhum dia selecionado!</span>
                                 </div>
+                                <div class="col-2"></div>
+                                <div id="consultas-disponiveis" class="col-8">
+                                    <div class="consulta-disponivel">
+                                        <span class="horario-consulta">12:00-13:00</span>
+                                        <i class="material-icons" data-toggle="modal"
+                                            data-target="#modalAgendamento">date_range</i>
+                                    </div>
+                                </div>
+                                <div class="col-2"></div>
                             </div>
-                            <div id="calendario-profissional" class="col-6">
-                                <div class="row">
-                                    <div class="col-4 text-right">
-                                        <a id="btn-left-calendario"><i class="material-icons">chevron_left</i></a>
-                                    </div>
-                                    <div class="col-4 text-center">
-                                        <span id="mes-calendario"></span>
-                                    </div>
-                                    <div class="col-4 text-left">
-                                        <a id="btn-right-calendario"><i class="material-icons">chevron_right</i></a>    
-                                    </div>
-                                    <div class="col-2"></div>
-                                    <div class="col-8 text-center">
-                                        <table id="" style="width:100%">
-                                            <tr>
-                                                <th>D</th>
-                                                <th>S</th>
-                                                <th>T</th>
-                                                <th>Q</th>
-                                                <th>Q</th>
-                                                <th>S</th>
-                                                <th>S</th>
-                                            </tr>
-                                        </table>
-                                        <table id="dias-calendario" style="width:100%">
-                                        </table>
+                        </div>
+                        <div id="calendario-profissional" class="col-6">
+                            <div class="row">
+                                <div class="col-2 text-right">
+                                    <a id="btn-left-calendario"><i class="material-icons">chevron_left</i></a>
                                 </div>
-                            <div class="col-2"></div>
+                                <div class="col-8 text-center">
+                                    <span id="mes-calendario"></span>
+                                </div>
+                                <div class="col-2 text-left">
+                                    <a id="btn-right-calendario"><i class="material-icons">chevron_right</i></a>
+                                </div>
+                                <div class="col-2"></div>
+                                <div class="col-8 text-center">
+                                    <table id="" style="width:100%">
+                                        <tr>
+                                            <th>D</th>
+                                            <th>S</th>
+                                            <th>T</th>
+                                            <th>Q</th>
+                                            <th>Q</th>
+                                            <th>S</th>
+                                            <th>S</th>
+                                        </tr>
+                                    </table>
+                                    <table id="dias-calendario" style="width:100%">
+                                    </table>
+                                </div>
+                                <div class="col-2"></div>
+                            </div>
                         </div>
                     </div>
-                </div>
                     <div>
                         <div class="modal-footer">
-                            <button id="remarcarConsulta-modal" data-diaSemana="4" data-dia="5" data-mes="9" data-ano="2019" type="button" class="btn btn-primary" disabled="true">Remarcar Consulta</button>
+                            <button id="" type="button" class="btn btn-primary" disabled="true">Remarcar
+                                Consulta</button>
                         </div>
                     </div>
                 </div>
@@ -138,6 +148,26 @@
         </div>
     </div>
 
+    
+    <div class="modal fade" id="modalCancelarConsulta" tabindex="-1" role="cancelar">
+            <div class="modal-dialog  modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="">Cancelar Consulta</h5>
+                        <button id="fechar-cancelarConsulta" type="button" class="close" data-dismiss="modal"
+                            aria-label="Fechar">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        Ao cancelar a consulta você estará sujeito a...    
+                    </div>
+                    <div class="modal-footer">
+                        <button id="" type="button" class="btn btn-primary">Cancelar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
 {% endblock %}
 {% block scripts %}
     <script type="text/javascript" src="{{ url_for('static',filename='js/swiper.js') }}" ></script>

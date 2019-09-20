@@ -1,0 +1,198 @@
+{% extends "layout.jinja" %}
+{% from 'formularios.jinja' import render_field %}
+
+{% block title %}
+<title>Minhas consultas - Zivot</title>
+{% endblock %}
+
+{% block styles %}
+{% endblock %}
+
+{% block body %}
+<div class="container-fluid">
+    <div class="row bg-white">
+        <div class="col-12">Consultas Agendadas</div>
+        <div class="col-12">
+            <div class="row accordion" id="accordion">
+                <div class="card col-12">
+                    <div id="consulta" class="card-header dropdown-toggle" data-toggle="collapse"
+                        data-target="#detalhesConsultaPendente" aria-expanded="true"
+                        aria-controls="detalhesConsultaPendente">
+                        <span>Luis Henrique</span>
+                        <span>Cardiologista</span>
+                        <span>Presencial</span>
+                        <span>13:00</span>
+                        <span>19/07</span>
+                        <span>CONFIRMADA</span>
+                    </div>
+                    <div id="detalhesConsultaPendente" class="collapse card-body" aria-labelledby="consulta"
+                        data-parent="#accordion">
+                        <span>Localidade</span>
+                        <button id="remarcarConsulta-modal" data-diaSemana="4" data-dia="5" data-mes="9" data-ano="2020"
+                            type="button" class="btn btn-primary" data-toggle="modal"
+                            data-target="#modalRemarcarConsulta">Remarcar Consulta</button>
+                        <button class="btn btn-primary" data-toggle="modal" data-target="#modalCancelarConsulta">Cancelar consulta</button>
+                    </div>
+                </div>
+                <!-- Nenhuma consulta agendada!
+                 DAR EMPTY -->
+            </div>
+        </div>
+        <div class="col-12">Consultas Realizadas</div>
+        <div class="col-12">
+            <div class="row accordion" id="accordion1">
+                <div class="card col-12">
+                    <div id="consulta1" class="card-header dropdown-toggle" data-toggle="collapse"
+                        data-target="#detalhesConsultaRealizada" aria-expanded="true"
+                        aria-controls="detalhesConsultaRealizada">
+                        <span>Luis Henrique</span>
+                        <span>Cardiologista</span>
+                        <span>Presencial</span>
+                        <span>13:00</span>
+                        <span>19/07</span>
+                    </div>
+                </div>
+                <div id="detalhesConsultaRealizada" class="collapse card-body" aria-labelledby="consulta1"
+                    data-parent="#accordion1">
+                    <button class="btn btn-primary" data-toggle="modal" data-target="#modalAvaliarConsulta">Avaliar
+                        consulta</button>
+                </div>
+            </div>
+            <!--Nenhuma consulta realizada!
+                DAR EMPTY -->
+        </div>
+    </div>
+</div>
+</div>
+
+<div class="modal fade" id="modalRemarcarConsulta" tabindex="-1" role="remarcar">
+    <div class="modal-dialog  modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Remarcar consulta do dia <span id="dia-consulta"></span>
+                </h5>
+                <button id="fechar-remarcarConsulta" type="button" class="close" data-dismiss="modal"
+                    aria-label="Fechar">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="row modal-body">
+                <div id="horarios-dia" class="col-6">
+                    <div class="row">
+                        <div class="col-12 text-center">
+                            <span id="dia-selecionado">Nenhum dia selecionado!</span>
+                        </div>
+                        <div class="col-2"></div>
+                        <div id="consultas-disponiveis" class="col-8">
+                            <div class="consulta-disponivel">
+                                <span class="horario-consulta">12:00-13:00</span>
+                                <i class="material-icons" data-toggle="modal"
+                                    data-target="#modalAgendamento">date_range</i>
+                            </div>
+                        </div>
+                        <div class="col-2"></div>
+                    </div>
+                </div>
+                <div id="calendario-profissional" class="col-6">
+                    <div class="row">
+                        <div class="col-2 text-right">
+                            <a id="btn-left-calendario"><i class="material-icons">chevron_left</i></a>
+                        </div>
+                        <div class="col-8 text-center">
+                            <span id="mes-calendario"></span>
+                        </div>
+                        <div class="col-2 text-left">
+                            <a id="btn-right-calendario"><i class="material-icons">chevron_right</i></a>
+                        </div>
+                        <div class="col-2"></div>
+                        <div class="col-8 text-center">
+                            <table id="" style="width:100%">
+                                <tr>
+                                    <th>D</th>
+                                    <th>S</th>
+                                    <th>T</th>
+                                    <th>Q</th>
+                                    <th>Q</th>
+                                    <th>S</th>
+                                    <th>S</th>
+                                </tr>
+                            </table>
+                            <table id="dias-calendario" style="width:100%">
+                            </table>
+                        </div>
+                        <div class="col-2"></div>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="modal-footer">
+                    <button id="" type="button" class="btn btn-primary" disabled="true">Remarcar Consulta</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+<div class="modal fade" id="modalAvaliarConsulta" tabindex="-1" role="detalhes">
+    <div class="modal-dialog  modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="">Avaliar Consulta</h5>
+                <button id="fechar-AvaliarConsulta" type="button" class="close" data-dismiss="modal"
+                    aria-label="Fechar">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="/" method=post>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="nota">Nota</label>
+                        <div id="nota" class="rating"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="descricao">Descreva a consulta</label>
+                        <input class="form-control" id="descricao" rows="3">
+                    </div>
+                    <div class="form-group">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="denuncia" value="1">
+                            <label class="form-check-label" for="denuncia">É uma denúncia</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+
+                    </div>
+                    <button type="submit" id="" type="button" class="btn btn-primary">Avaliar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modalCancelarConsulta" tabindex="-1" role="cancelar">
+    <div class="modal-dialog  modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="">Cancelar Consulta</h5>
+                <button id="fechar-cancelarConsulta" type="button" class="close" data-dismiss="modal"
+                    aria-label="Fechar">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Ao cancelar a consulta você estará suejeito a...    
+            </div>
+            <div class="modal-footer">
+                <button id="" type="button" class="btn btn-primary">Cancelar</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block scripts %}
+<script type="text/javascript" src="{{ url_for('static',filename='star-rating/star-rating.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static',filename='js/calendario.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static',filename='js/consultas.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static',filename='js/modais.js') }}"></script>
+{% endblock %}
