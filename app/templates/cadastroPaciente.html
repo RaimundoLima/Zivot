@@ -2,7 +2,7 @@
 {% from 'formularios.jinja' import render_field %}
 
 {% block title %}
-    <title>Cadastro de profissional - Zivot</title>
+    <title>Cadastro de usuario - Zivot</title>
 {% endblock %}
 
 {% block styles %}
@@ -14,7 +14,7 @@
             <div class="col-3"></div>
             <div class="col-6 text-left bg-white">
                 <div class="row">
-                    <div class="col-12 text-left">Insira seus dados</div>
+                    <div class="col-12 text-left">Recupere sua senha</div>
                     <form method=post>
                         <div class="form-group">{{ render_field(form.nome) }}</div>
                         <div class="form-group">{{ render_field(form.senha) }}</div>
@@ -32,8 +32,8 @@
                         <div class="form-group">{{ render_field(form.numero) }}</div>
                         <div class="form-group">{{ render_field(form.complemento) }}</div>
                         <div class="form-group">
-                            {{ form.receber_noticias }}
-                            {{ form.receber_noticias.label }}
+                            {{form.receber_noticias.label}}
+                            {{form.receber_noticias}}
                         </div>
                         {{form.submit}}
                     </form>
