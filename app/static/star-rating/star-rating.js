@@ -36,20 +36,20 @@
             );
 
         }
-        $(this).append('<input type="hidden" name="' + settings.fieldName + '" id="' + settings.fieldId + '" value="' + settings.selectedRatings + '" />');
+        //$(this).append('<input type="hidden" name="' + settings.fieldName + '" id="' + settings.fieldId + '" value="' + settings.selectedRatings + '" />');
 
         obj.showRating(settings.selectedRatings, true);
     };
 
     $.fn.setRating = function (numRating) {
         var obj = this;
-        $('#' + obj.settings.fieldId).val(numRating);
+        $('#nota').val(numRating);
         obj.showRating(numRating, true);
     };
 
     $.fn.showRating = function (numRating, force) {
         var obj = this;
-        if ($('#' + obj.settings.fieldId).val() == '' || force) {
+        if ($('#nota').val() == '' || force) {
             $(obj).find('i').each(function () {
                 var icon = obj.settings.icon + '_border';
                 $(this).removeClass('selected');

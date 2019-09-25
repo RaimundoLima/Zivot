@@ -147,22 +147,21 @@
             <form action="/" method=post>
                 <div class="modal-body">
                     <div class="form-group">
-                        <label for="nota">Nota</label>
-                        <div id="nota" class="rating"></div>
-                    </div>
-                    <div class="form-group">
-                        <label for="descricao">Descreva a consulta</label>
-                        <input class="form-control" id="descricao" rows="3">
-                    </div>
-                    <div class="form-group">
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="checkbox" id="denuncia" value="1">
-                            <label class="form-check-label" for="denuncia">É uma denúncia</label>
+                        <div class="rating"> 
+                            {{form.nota}}
                         </div>
                     </div>
+                    <div class="form-group">{{render_field(form.descricao)}}</div>
                     <div class="form-group">
-
+                        {{ form.denuncia }}
+                        {{ form.denuncia.label }}
                     </div>
+                    {% if session['tipo'] == "profissional" %}
+                        <div class="form-group">
+                            {{ form.falta }}
+                            {{ form.falta.label }}
+                        </div>
+                    {% endif %}
                     <button type="submit" id="" type="button" class="btn btn-primary">Avaliar</button>
                 </div>
             </form>
