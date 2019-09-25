@@ -1,7 +1,7 @@
 from flask import render_template,Blueprint,redirect,request,session,url_for
 from app.models import Usuario,Medico,Adm,CoCriador,Especialidade,Consulta
 from app.utils.flask_mail import redefinir_senha
-from app.utils.flask_wtf import formEmail,formLogin,form_usuario,formAvaliacao
+from app.utils.flask_wtf import formEmail, formLogin, form_usuario, formAvaliacao
 
 from datetime import datetime
 import hashlib
